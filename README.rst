@@ -27,3 +27,9 @@ Then you can serve that application on port 8080 using:
 
 If you make change, run ``make`` again.
 
+You can also build and and run a backend-independent version with mocked API calls. Run
+
+.. code:: console
+
+	make run MOCK=1
+

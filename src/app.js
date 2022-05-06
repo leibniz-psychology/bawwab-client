@@ -247,5 +247,17 @@ import ClickOutsideDirective from './directive/clickOutside.js';
 import {Settings} from "./settings";
 app.directive ('click-outside', ClickOutsideDirective);
 
-app.mount ('#app');
+/* Not sure if vue exposes this somewhere */
+let mounted = false;
+export function mount () {
+    if (!mounted) {
+        app.mount ('#app');
+        mounted = true;
+    }
+}
+
+/* Will be called as soon as the mocking service worker is ready */
+if (!__BAWWAB_MOCK__) {
+    mount ();
+}
 

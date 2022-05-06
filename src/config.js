@@ -7,5 +7,6 @@ export const autosaveInterval = 10*60*1000; /* ms */
 export const autosaveKeep = {secondly: 6, hourly: 12, daily: 14};
 
 /* Websocket endpoint for process manager */
-export const processManagerUrl = new URL ('/api/process/notify', window.location.href);
+export const processManagerUrl = typeof window !== 'undefined' ? new URL ('/api/process/notify', window.location.href) : null;
+
 

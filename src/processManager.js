@@ -50,7 +50,7 @@ function onMessage (event) {
 
 	const data = JSON.parse (event.data);
 	const token = data.token;
-	console.debug ('got message with token', token);
+	console.debug ('processManager: onMessage', data);
 
 	if (data.notify == 'processStart') {
 		console.debug ('got process start for', token);

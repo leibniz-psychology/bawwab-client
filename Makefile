@@ -2,6 +2,13 @@ PREFIX:=/usr/local
 SHAREDIR:=$(PREFIX)/share/bawwab-client
 #NODE_ENV:=development
 NODE_ENV:=production
+MOCK:=0
+
+ifeq ($(MOCK),1)
+	ESBUILD_FLAGS:=--inject:./src/mock/index.js --define:__BAWWAB_MOCK__=true
+else
+	ESBUILD_FLAGS:=--define:__BAWWAB_MOCK__=false
+endif
 
 # We support:
 # Chrome: Last three versions. No LTS release.
@@ -10,7 +17,7 @@ NODE_ENV:=production
 # Safari: Last three versions.
 TARGETS:=chrome87,firefox78,safari12,edge87
 
-build: _build/html/assets _build/html/index.html
+build: _build/html/assets _build/html/assets/serviceworker.js _build/html/index.html
 	
 _build/html/assets:
 	esbuild src/app.js \
@@ -30,7 +37,11 @@ _build/html/assets:
 			--define:__VUE_I18N_FULL_INSTALL__=true \
 			--define:__VUE_I18N_LEGACY_API__=true \
 			--define:__INTLIFY_PROD_DEVTOOLS__=false \
+			$(ESBUILD_FLAGS) \
 			--outdir=$@
+
+_build/html/assets/serviceworker.js:
+	esbuild src/mock/serviceworker.js --bundle --format=esm --sourcemap --loader:.svg=text --outdir=_build/html/assets
 
 _build/html/index.html:
 	cp src/app.html $@
@@ -46,5 +57,5 @@ _build/server.pem:
 	openssl req -new -x509 -nodes -out $@ -keyout _build/server.key -subj "/C=XX/ST=Universe/L=Universe/O=Test/OU=IT/CN=local.psychnotebook.org"
 
 # Do not dependency-track _build/assets
-.PHONY: _build/assets build install run
+.PHONY: _build/html/assets _build/html/assets/serviceworker.js build install run
 

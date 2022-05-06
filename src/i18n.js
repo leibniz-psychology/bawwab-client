@@ -36,7 +36,7 @@ async function loadLanguage (lang) {
 		en: () => import ('./messages/en.json'),
 		};
 	if (!langs[lang]) {
-		throw new Error ('unsupported language');
+		return;
 	}
 	const data = await langs[lang]();
 	i18n.global.setLocaleMessage (lang, data);

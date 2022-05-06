@@ -24,9 +24,10 @@ export default class Program {
 	 */
 	async handleMessages () {
 		const msg = await receive (this.token);
+		console.log ('program: handling message', msg);
 		switch (msg.notify) {
 			case 'processData':
-				console.debug ('got more data for', msg.kind, msg.data);
+				console.debug ('program: processData', msg.kind, msg.data);
 				switch (msg.kind) {
 					case 'stdout':
 						this.stdoutBuf += msg.data;
