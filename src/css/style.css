@@ -674,6 +674,7 @@ form.filter input[type="radio"]:checked ~ label {
 /* align text and checkboxes */
 .tosprompt ul.accept li {
 	display: flex;
+	align-items: center;
 	margin-bottom: 1em;
 }
 
