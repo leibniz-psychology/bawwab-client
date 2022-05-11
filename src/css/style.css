@@ -208,11 +208,14 @@ header .product-logo img {
 }
 
 #main-nav > ul {
-	text-align: right;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 }
 
 #main-nav > ul li {
 	display: inline-block;
+    margin-left: 0.7em;
 }
 
 #main-nav > ul li a {
