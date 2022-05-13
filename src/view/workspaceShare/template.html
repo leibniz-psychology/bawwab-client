@@ -7,11 +7,11 @@
 
 	<template v-if="shareUrl[selectedShareUrl]">
 		<div class="pure-g sp-mode-selector">
-			<div class="pure-u-1-2">
+			<div class="pure-u-1-2 sp-mode-selector--item">
 				<input type="radio" name="mode" v-model="mode" value="link" id="shareModeLink">
 				<label for="shareModeLink">{{ $t('v.workspaceShare.modeShareLink') }}</label>
 			</div>
-			<div class="pure-u-1-2">
+			<div class="pure-u-1-2 sp-mode-selector--item">
 				<input type="radio" name="mode" v-model="mode" value="email" id="shareModeEmail">
 				<label for="shareModeEmail">{{ $t('v.workspaceShare.modeShareEmail') }}</label>
 			</div>

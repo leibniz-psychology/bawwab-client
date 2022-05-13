@@ -6,6 +6,11 @@
     margin-bottom: 1em;
 }
 
+.sp-mode-selector--item {
+    display: flex;
+    align-items: center;
+}
+
 .sp-mode-form {
     display: flex;
     flex-direction: column;

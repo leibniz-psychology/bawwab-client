@@ -16,7 +16,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     /* the close button takes up the remaining padding in the top and left corner */
-    padding: 3em 5em;
+    padding: 2em 3em;
     width: 50vw;
     display: flex;
     overflow: hidden;

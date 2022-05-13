@@ -204,7 +204,7 @@ header .product-logo img {
 
 #main-nav {
 	background-color: #FFFFFF;
-	padding: 1em 2em 1em 0;
+	padding: 0.7em 2em 0.7em 0;
 }
 
 #main-nav > ul {
@@ -215,7 +215,7 @@ header .product-logo img {
 
 #main-nav > ul li {
 	display: inline-block;
-    margin-left: 0.7em;
+    margin-left: 1.5em;
 }
 
 #main-nav > ul li a {
