@@ -19,7 +19,7 @@ TARGETS:=chrome87,firefox78,safari12,edge87
 
 build: _build/html/assets _build/html/assets/serviceworker.js _build/html/index.html
 	
-_build/html/assets:
+_build/html/assets: | _build/html
 	esbuild src/app.js \
 			--bundle \
 			--sourcemap \
@@ -40,12 +40,15 @@ _build/html/assets:
 			$(ESBUILD_FLAGS) \
 			--outdir=$@
 
-_build/html/assets/serviceworker.js:
+_build/html/assets/serviceworker.js: | _build/html/assets
 	esbuild src/mock/serviceworker.js --bundle --format=esm --sourcemap --loader:.svg=text --outdir=_build/html/assets
 
-_build/html/index.html:
+_build/html/index.html: | _build/html
 	cp src/app.html $@
-	
+
+_build/html:
+	mkdir -p $@
+
 install: build
 	install -d $(SHAREDIR)
 	cp -Rv _build/html $(SHAREDIR)
