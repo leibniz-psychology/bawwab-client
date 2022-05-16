@@ -23,6 +23,13 @@
     (version "0.1")
     (source (local-file %source-dir #:recursive? #t))
     (build-system gnu-build-system)
+    (arguments
+      (list
+       #:tests? #f ; No tests.
+       #:make-flags #~(list (string-append "PREFIX=" #$output))
+       #:phases
+       #~(modify-phases %standard-phases
+         (delete 'configure))))
     (inputs
       `(("node-vue" ,node-vue-3.2.22)
         ("node-vue-router" ,node-vue-router-4.0.12)
@@ -34,7 +41,7 @@
        ;; Propagate NODE_PATH to build environment, so esbuild can find external
        ;; modules.
        ("node" ,node)))
-    (home-page #f)
+    (home-page "https://github.com/leibniz-psychology/bawwab-client")
     (synopsis #f)
     (description #f)
     (license #f)))
