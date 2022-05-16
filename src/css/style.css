@@ -533,7 +533,8 @@ details.dropdown div.body > ul li {
 }
 
 .usermenu ul li {
-	margin: 0.3em 0;
+    /* Must be !important, so it overrides #main-nav */
+	margin: 0.3em 0 !important;
 }
 
 dl dt {
