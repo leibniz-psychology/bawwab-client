@@ -47,7 +47,7 @@ export class Settings extends Map {
 			let response = await this.put (path, content);
 
 			if (!response.ok) {
-				response = await fetch(endpoint, { method: "MKCOL" });
+				response = await fetch (endpoint + '?kind=MKCOL', {method: 'POST'});
 				if (response.ok) {
 					/* retry */
 					response = await this.put (path, content);
