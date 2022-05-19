@@ -70,17 +70,17 @@
 		</td>
 		<td class="actions">
 			<ul class="actions-container">
-				<li class="action-container" v-if="w.getPermissions (this.username)[0].canShare ()">
+				<li class="wl-action-container" v-if="w.getPermissions (this.username)[0].canShare ()">
 					<router-link class="action-button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
-					<span class="action-tooltip popup">{{ $t('v.workspaceList.share') }}</span>
+					<span class="wl-action-tooltip">{{ $t('v.workspaceList.share') }}</span>
 				</li>
-				<li class="action-container" v-if="w.getPermissions (this.username)[0].canRead ()">
+				<li class="wl-action-container" v-if="w.getPermissions (this.username)[0].canRead ()">
 					<action-button class="action-button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
-					<span class="action-tooltip popup">{{ $t('v.workspaceList.copy') }}</span>
+					<span class="wl-action-tooltip">{{ $t('v.workspaceList.copy') }}</span>
 				</li>
 				<li class="action-container" v-if="w.getPermissions (this.username)[0].canDelete ()">
 					<router-link class="action-button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
-					<span class="action-tooltip popup">{{ $t('v.workspaceList.delete') }}</span>
+					<span class="wl-action-tooltip">{{ $t('v.workspaceList.delete') }}</span>
 				</li>
 				<li><dropdown>
 					<template v-slot:button>

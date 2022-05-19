@@ -507,7 +507,7 @@ details.dropdown {
 	position: relative;
 }
 
-details.dropdown div.body, .popup {
+details.dropdown div.body {
 	box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
 	border: 0.1em solid #352071;
 	text-align: left !important;
@@ -664,52 +664,6 @@ form.filter input[type="radio"]:checked ~ label {
 .landingpage .goto {
 	text-align: center;
 	margin-top: 3em;
-}
-
-.tosprompt ul.accept {
-	list-style-type: none;
-	margin: 1em 0;
-	padding: 0;
-}
-
-/* align text and checkboxes */
-.tosprompt ul.accept li {
-	display: flex;
-	align-items: center;
-	margin-bottom: 1em;
-}
-
-.tosprompt ul.accept li input {
-	margin-right: 0.5em;
-	display: block;
-}
-
-.tosprompt ul.accept li label {
-	display: block;
-}
-
-.faq-content {
-	max-width: 46rem;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: justify;
-}
-
-.action-container > .action-tooltip {
-	display: none
-}
-
-.action-container > .action-button:hover + .action-tooltip {
-	display: block;
-}
-
-.action-tooltip {
-	padding: 0.3em;
-	pointer-events: none;
-}
-
-.settings-checkboxes {
-    margin-left: 2em;
 }
 
 .horizontal-ruler {

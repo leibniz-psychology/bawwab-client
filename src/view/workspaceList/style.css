@@ -4,6 +4,24 @@
     flex-direction: column;
     align-items: center;
 }
+.wl-action-container > .wl-action-tooltip {
+    display: none
+}
+
+.wl-action-container > .action-button:hover + .wl-action-tooltip {
+    display: block;
+}
+
+.wl-action-tooltip {
+    padding: 0.3em;
+    pointer-events: none;
+    box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
+    border: 0.1em solid #352071;
+    text-align: left;
+    background-color: white;
+    position: absolute;
+    z-index: 1000;
+}
 
 table.workspaces {
     width: 100%;
