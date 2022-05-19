@@ -8,19 +8,18 @@
 .wl-actions .dropdown .body {
     right: -1rem;
 }
-
-.wl-actions ul.wl-actions-container {
+.wl-actions-container {
     display: flex;
     justify-content: center;
     /* Line-height for ul is overridden above, so reset to pure’s default */
     line-height: 1.15;
 }
 
-.wl-action-container > .wl-action-tooltip {
+.wl-action-tooltip {
     display: none
 }
 
-.wl-action-container > .action-button:hover + .wl-action-tooltip {
+.action-button:hover + .wl-action-tooltip {
     display: block;
 }
 
@@ -47,42 +46,42 @@ table.workspaces tr td {
     max-width: 0;
 }
 
-table.workspaces td.wl-title {
+td.wl-title {
     text-align: left;
     font-weight: 500;
 }
 
-table.workspaces .wl-description {
+.wl-description {
     text-align: left;
 }
 
-table.workspaces .wl-applications {
+.wl-applications {
     text-align: center;
 }
 
-table.workspaces .wl-applications ul {
+.wl-applications ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-table.workspaces .wl-applications li {
+.wl-applications li {
     display: inline;
     margin: 0 0.3em;
 }
 
-table.workspaces .wl-actions {
+.wl-actions {
     text-align: center;
     overflow: visible;
 }
 
-table.workspaces .wl-actions ul {
+.wl-actions ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-table.workspaces .wl-actions li {
+.wl-actions li {
     display: inline;
     margin: 0;
 }
