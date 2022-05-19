@@ -1,0 +1,10 @@
+.spinner {
+    animation: spin 2.5s infinite linear;
+    height: 1.2em;
+    vertical-align: middle;
+}
+
+.spinner.big {
+    height: 7em;
+    margin: 1em;
+}

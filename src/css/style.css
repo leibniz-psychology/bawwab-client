@@ -574,28 +574,6 @@ form.filter input[type="radio"]:checked ~ label {
 	border-bottom: 0.1em solid white;
 }
 
-.actions .dropdown .body {
-	right: -1rem;
-}
-
-.actions ul.actions-container {
-	display: flex;
-	justify-content: center;
-	/* Line-height for ul is overridden above, so reset to pure’s default */
-	line-height: 1.15;
-}
-
-.spinner {
-	animation: spin 2.5s infinite linear;
-	height: 1.2em;
-	vertical-align: middle;
-}
-
-.spinner.big {
-	height: 7em;
-	margin: 1em;
-}
-
 @keyframes spin {
   0% {
 	transform: rotate(0deg);
@@ -605,20 +583,6 @@ form.filter input[type="radio"]:checked ~ label {
   }
 }
 
-.packageSearch {
-	display: flex;
-	align-items: stretch;
-}
-
-.packageSearch > * {
-	margin-right: 0.5em;
-	flex-grow: 1;
-}
-
-.packageSearch > *:last-child {
-	margin-right: 0;
-}
-
 .share .kind {
 	margin: 1em 0;
 }
@@ -626,44 +590,6 @@ form.filter input[type="radio"]:checked ~ label {
 .mailpreview {
 	word-break: break-all;
 	white-space: pre-wrap;
-}
-
-.landingpage h3 {
-	margin-top: 0;
-}
-
-.landingpage .overview {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 3em;
-	max-width: 60em;
-	margin: 0 auto;
-}
-
-.landingpage .features, .landingpage .mission {
-	padding: 0 2em;
-}
-
-.landingpage .left-photo,
-.landingpage .right-photo {
-	border-radius: 1em;
-	background-size: cover;
-	min-height: 15em;
-}
-
-.landingpage .left-photo {
-	background-image: url(../img/foto_links_oben.jpg);
-	background-position: right;
-}
-
-.landingpage .right-photo {
-	background-image: url(../img/foto_rechts_unten.jpg);
-	background-position: center;
-}
-
-.landingpage .goto {
-	text-align: center;
-	margin-top: 3em;
 }
 
 .horizontal-ruler {

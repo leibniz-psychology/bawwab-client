@@ -4,6 +4,18 @@
     flex-direction: column;
     align-items: center;
 }
+
+.wl-actions .dropdown .body {
+    right: -1rem;
+}
+
+.wl-actions ul.wl-actions-container {
+    display: flex;
+    justify-content: center;
+    /* Line-height for ul is overridden above, so reset to pure’s default */
+    line-height: 1.15;
+}
+
 .wl-action-container > .wl-action-tooltip {
     display: none
 }
@@ -35,42 +47,42 @@ table.workspaces tr td {
     max-width: 0;
 }
 
-table.workspaces td.title {
+table.workspaces td.wl-title {
     text-align: left;
     font-weight: 500;
 }
 
-table.workspaces .description {
+table.workspaces .wl-description {
     text-align: left;
 }
 
-table.workspaces .applications {
+table.workspaces .wl-applications {
     text-align: center;
 }
 
-table.workspaces .applications ul {
+table.workspaces .wl-applications ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-table.workspaces .applications li {
+table.workspaces .wl-applications li {
     display: inline;
     margin: 0 0.3em;
 }
 
-table.workspaces .actions {
+table.workspaces .wl-actions {
     text-align: center;
     overflow: visible;
 }
 
-table.workspaces .actions ul {
+table.workspaces .wl-actions ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-table.workspaces .actions li {
+table.workspaces .wl-actions li {
     display: inline;
     margin: 0;
 }

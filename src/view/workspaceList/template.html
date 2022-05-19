@@ -35,22 +35,22 @@
 		<col class="wl-column-actions">
 	<thead>
 		<tr>
-			<th class="title">{{ $t('v.workspaceList.thtitle') }}</th>
-			<th class="description">{{ $t('v.workspaceList.thdescription') }}</th>
-			<th class="publishedBy" v-if="filter==='world' || filter==='shared'">{{ $t('v.workspaceList.thcreatedBy') }}</th>
-			<th class="applications">{{ $t('v.workspaceList.thapplications') }}</th>
-			<th class="actions">{{ $t('v.workspaceList.thactions') }}</th>
+			<th class="wl-title">{{ $t('v.workspaceList.thtitle') }}</th>
+			<th class="wl-description">{{ $t('v.workspaceList.thdescription') }}</th>
+			<th class="wl-publishedBy" v-if="filter==='world' || filter==='shared'">{{ $t('v.workspaceList.thcreatedBy') }}</th>
+			<th class="wl-applications">{{ $t('v.workspaceList.thapplications') }}</th>
+			<th class="wl-actions">{{ $t('v.workspaceList.thactions') }}</th>
 		</tr>
 	</thead>
 	<tbody>
 	<tr v-for="w in filteredWorkspaces" :key="w.metadata._id">
-		<td class="title">
+		<td class="wl-title">
 			<router-link :to="{name: 'workspace', params: {wsid: w.metadata._id}}">
 				<span v-if="w.metadata.name">{{ w.metadata.name }}</span>
 				<span v-else class="placeholder">{{ $t('v.workspaceList.unnamed') }}</span>
 			</router-link>
 		</td>
-		<td class="description">
+		<td class="wl-description">
 			<router-link :to="{name: 'workspace', params: {wsid: w.metadata._id}}">
 				<span v-if="w.metadata.description">{{ w.metadata.description }}</span>
 				<span v-else>&nbsp;</span>
@@ -59,7 +59,7 @@
 		<td class="publishedBy" v-if="filter==='world' || filter==='shared'">
 			<span>{{ w.owner().join(", ") }}</span>
 		</td>
-		<td class="applications">
+		<td class="wl-applications">
 			<ul>
 				<li v-for="a in w.runnableApplications (username)" :key="a._id">
 					<router-link :to="{name: 'application', params: {wsid: w.metadata._id, appid: a._id}}">
@@ -68,8 +68,8 @@
 				</li>
 			</ul>
 		</td>
-		<td class="actions">
-			<ul class="actions-container">
+		<td class="wl-actions">
+			<ul class="wl-actions-container">
 				<li class="wl-action-container" v-if="w.getPermissions (this.username)[0].canShare ()">
 					<router-link class="action-button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
 					<span class="wl-action-tooltip">{{ $t('v.workspaceList.share') }}</span>

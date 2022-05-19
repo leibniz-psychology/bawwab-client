@@ -1,5 +1,6 @@
 import spinnerSvg from '../../img/spinner.svg';
 import template from './template.html';
+import './style.css';
 
 export default {
 	name: 'Spinner',
