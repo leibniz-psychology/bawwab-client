@@ -2,6 +2,7 @@ import { store } from '../../app.js';
 import { Settings } from '../../settings';
 import { settingsProp } from '../../utils.js';
 import template from './template.html';
+import './style.css';
 
 export default {
 	name: 'AccountView',

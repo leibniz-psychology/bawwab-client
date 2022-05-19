@@ -29,7 +29,7 @@ export default {
 			const autocopy = this.settings.get('autocopySharedReadOnly');
 			if (autocopy && this.isReadOnlyWorkspace) {
 				/* click the button, so there will be visual feedback */
-				const copyButton = this.$el.querySelector ('.actionbar .copy');
+				const copyButton = this.$el.querySelector ('.ws-secondaryActions .copy');
 				copyButton.click ();
 			}
 			await this.setWorkspaceVisited();
@@ -71,7 +71,7 @@ export default {
 		},
 		save: async function () {
 			const name = this.$el.querySelector ('.ws-headline-title-input').value;
-			const description = this.$el.querySelector ('.description textarea').value;
+			const description = this.$el.querySelector ('.ws-workspace_description textarea').value;
 			const w = this.workspace;
 
 			w.metadata.name = name;
@@ -96,10 +96,10 @@ export default {
 			}
 		},
 		makeTitleEditable: function () {
-			this.makeEditable('.ws-headline-title-input');
+			this.makeEditable('.ws-headline_titleInput');
 		},
 		makeDescriptionEditable: function () {
-			this.makeEditable('.description textarea');
+			this.makeEditable('.ws-workspace_description textarea');
 		},
 		discard: async function () {
 			this.editable = false;

@@ -1,4 +1,4 @@
-.modal {
+.app-modal {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-.modal .frame {
+.app-modal .frame {
     background-color: #ffffff;
     position: fixed;
     top: 50%;
@@ -22,25 +22,25 @@
     overflow: hidden;
 }
 
-.modal .frame.fixed {
+.app-modal .frame.fixed {
     height: 80vh;
 }
 
-.modal .frame.scaling {
+.app-modal .frame.scaling {
     max-height: 80vh;
 }
 
-.modal .frame .icon {
-    margin-right: 2em;
-}
-
-.modal .frame .content {
+.app-modal_content {
     display: flex;
     flex-direction: column;
     flex-grow: 3;
 }
 
-.modal .frame .userContent {
+.app-modal_icon {
+    margin-right: 2em;
+}
+
+.app-modal_userContent {
     flex-grow: 3;
     /*flex-shrink: 1;*/
     display: flex;
@@ -49,19 +49,19 @@
     overflow-y: auto;
 }
 
-.modal .frame .buttons {
+.app-modal_buttons {
     text-align: right;
     margin-top: 1em;
 }
 
-.modal h2 {
+.app-modal h2 {
     margin-top: 0.5em;
 }
 
-.modal-headline {
+.app-modal_headline {
     display: flex;
 }
 
-.modal-close-button {
+.app-modal_closeButton {
     margin-left: auto;
 }

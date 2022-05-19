@@ -1,4 +1,4 @@
-.message {
+.app-message {
     color: white;
     padding: 1em;
     margin: 1em 0;
@@ -6,30 +6,30 @@
     align-items: center;
 }
 
-.message a {
+.app-message a {
     color: white;
     text-decoration: underline;
 }
 
-.message.warning {
+.app-message--warning {
     background-color: var(--magenta-base);
 }
 
-.message.info {
+.app-message--info {
     background-color: var(--green-base);
 }
 
-.message i.icn {
+.app-message i.icn {
     font-size: 1.5em;
     margin-right: 0.5em;
 }
 
-.message pre {
+.app-message pre {
     margin: 0;
     white-space: pre-wrap;
 }
 
-.message .close {
+.app-message .close {
     cursor: pointer;
     text-align: right;
     flex-grow: 2;

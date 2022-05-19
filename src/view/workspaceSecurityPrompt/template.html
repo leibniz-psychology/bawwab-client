@@ -1,18 +1,18 @@
-<modal icon="users" :title="title" :closeLink="{name: 'workspace', params: {wsid: workspace?.metadata._id}}" :scaling="true">
-	<div class="share-prompt-info">
+<modal class="wsp-prompt" icon="users" :title="title" :closeLink="{name: 'workspace', params: {wsid: workspace?.metadata._id}}" :scaling="true">
+	<div class="wsp-prompt_info">
 		<i class="fas fa-question-circle inline-icon"></i>
 		<router-link class="info-link" :to="{name: 'faq'}">{{ $t('v.workspaceSecurityPrompt.explainLink') }}</router-link>
 	</div>
-	<div class="share-prompt-risks">
-		<div class="share-prompt-warning">
+	<div class="wsp-prompt_risks">
+		<div class="wsp-prompt_warning">
 			<i class="fas fa-exclamation-triangle inline-icon"></i>
 			<span class="danger">{{ $t('v.workspaceSecurityPrompt.warning') }}</span>
 		</div>
 		<div class="more-information">{{ $t('v.workspaceSecurityPrompt.warningExplanation') }}</div>
 	</div>
 	<hr class="horizontal-ruler">
-	<div class="share-prompt-options">
-		<div class="share-prompt-checkboxes">
+	<div class="wsp-prompt_options">
+		<div class="wsp-prompt_checkboxes">
 			<div v-if="isReadOnlyWorkspace">
 				<input id="autocopy" type="checkbox" name="autocopy" v-model="autocopySharedReadOnly">
 				<label for="autocopy" v-html="$t('v.workspaceSecurityPrompt.autoCopy')"></label>

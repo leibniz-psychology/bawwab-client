@@ -1,48 +1,54 @@
-.sp-kind-selector {
+.wsh-kindSelector {
     margin-bottom: 0.3em;
 }
 
-.sp-kind-meaning, .sp-mode-selector, .sp-recipient-list {
+.wsh-kindMeaning, .wsh-modeSelector, .wsh-recipientList {
     margin-bottom: 1em;
 }
 
-.sp-mode-selector--item {
+.wsh-modeSelector_item {
     display: flex;
     align-items: center;
 }
 
-.sp-mode-form {
+.wsh-modeForm {
     display: flex;
     flex-direction: column;
 }
 
-.sp-recipient-list--item {
+.wsh-recipientList_item {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.sp-email-adder {
+.wsh-emailAdder {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.sp-email-instruct {
+.wsh-emailInstruct {
     margin-bottom: 0.5em;
 }
 
-.sp-input {
+.wsh-input {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5em;
 }
 
-.sp-input-label {
+.wsh-input_label {
     margin-bottom: 0.2em;
 }
 
-.sp-add-address-btn {
+.wsh-addAddressBtn {
     margin-bottom: 1.0em;
+}
+
+
+.wsh-mailPreview {
+    word-break: break-all;
+    white-space: pre-wrap;
 }

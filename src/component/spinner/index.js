@@ -1,5 +1,6 @@
 import spinnerSvg from '../../img/spinner.svg';
 import template from './template.html';
+import './style.css';
 
 export default {
 	name: 'Spinner',
@@ -7,7 +8,7 @@ export default {
 	template: template,
 	computed: {
 		cls() {
-			return 'spinner' + (this.big ? ' big' : '');
+			return 'app-spinner ' + (this.big ? 'app-spinner--big' : '');
 		},
 		path() {
 			return '/assets/' + spinnerSvg;

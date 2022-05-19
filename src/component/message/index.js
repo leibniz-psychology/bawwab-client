@@ -15,7 +15,7 @@ export default {
 			return "icn fa fa-" + kindToIcon[this.kind];
 		},
 		divclass: function () {
-			return 'message ' + (this.kind ? this.kind : 'info');
+			return 'app-message app-message--' + (this.kind ? this.kind : 'info');
 		},
 	},
 	methods: {

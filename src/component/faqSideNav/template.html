@@ -2,7 +2,7 @@
 	<ul class="faq-toc_list">
 		<li v-for="item in tocData" 
 			:key="item.anchor" 
-			class="faq-toc_item faq-toc_toplevelitem"
+			class="faq-toc_item faq-toc_topLevelItem"
 			:class="{'faq-toc_collaptor-item':item.children.length > 0}">
 			<a class="faq-toc_link" :href="'#'+item.anchor" @click="smoothScrollIntoView($event)">{{ item.text }}</a>
 			<i v-if="item.children.length > 0"
@@ -10,7 +10,7 @@
 					@click="toggleSubListShown(item.anchor)"></i>
 			<transition name="faq-toc--slide">
 				<ul v-if="item.children.length > 0 && subListShown.has (item.anchor)" class="faq-toc_innerlist">
-					<li v-for="innerItem in item.children" :key="innerItem.anchor" class="faq-toc_item faq-toc_secondlevelitem">
+					<li v-for="innerItem in item.children" :key="innerItem.anchor" class="faq-toc_item faq-toc_secondLevelItem">
 						<a class="faq-toc_link" :href="'#'+innerItem.anchor" @click="smoothScrollIntoView($event)">{{ innerItem.text }}</a>
 					</li>
 				</ul>

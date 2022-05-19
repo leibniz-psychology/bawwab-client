@@ -3,6 +3,7 @@
 
 import template from './template.html';
 import { setLanguage } from '../../i18n';
+import "./style.css";
 
 export default {
 	name: 'LanguageSwitcher',

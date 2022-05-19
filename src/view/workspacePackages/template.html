@@ -1,15 +1,15 @@
 <modal :title="$t('v.workspacePackages.title')" icon="box" :closeName="$t('v.workspacePackages.close')" :closeLink="{name: 'workspace', params: {wsid: workspace.metadata._id}}" :scaling="false">
 		<p v-html="$t('v.workspacePackages.description')"></p>
-		<div class="packageSearch">
+		<div class="wp-packageSearch">
 			<input type="search" :placeholder="$t('v.workspacePackages.searchPackage')" :disabled="busy" v-model="search">
 		</div>
 		<p v-if="searchFailed">{{ $t('v.workspacePackages.searchFailed') }}</p>
 		<p v-else-if="searching === true"><spinner></spinner></p>
-		<div class="packages" v-else-if="filteredPackages.length > 0">
-			<div v-for="ps of filteredPackages" class="package">
-				<div class="left">
-				<p><strong class="name">{{ ps.p.name }}</strong> <small class="version">{{ ps.p.version }}</small></p>
-				<p class="state">
+		<div class="wp-packages" v-else-if="filteredPackages.length > 0">
+			<div v-for="ps of filteredPackages" class="wp-package">
+				<div class="wp-package_left">
+				<p><strong class="wp-package_name">{{ ps.p.name }}</strong> <small class="wp-package_version">{{ ps.p.version }}</small></p>
+				<p class="wp-package_state">
 					<span v-if="ps.state.add">{{ $t('v.workspacePackages.packageStateAdd') }}</span>
 					<span v-else-if="ps.state.remove">{{ $t('v.workspacePackages.packageStateRemove') }}</span>
 					<span v-else-if="ps.state.installed">{{ $t('v.workspacePackages.packageStateInstalled') }}</span>
@@ -17,7 +17,7 @@
 				</p>
 				<p v-if="ps.p.synopsis">{{ ps.p.synopsis }}</p>
 				</div>
-				<div class="right">
+				<div class="wp-package_right">
 				<action-button v-if="!ps.state.installed && !ps.state.add" icon="plus" :disabled="busy" :f="_ => addPackage(ps)">{{ $t('v.workspacePackages.addPackage') }}</action-button>
 				<!-- Package removal is disabled by request. -->
 				<action-button v-if="ps.state.installed && !ps.state.remove" icon="trash" :disabled="busy" :f="_ => removePackage(ps)">{{ $t('v.workspacePackages.removePackage') }}</action-button>

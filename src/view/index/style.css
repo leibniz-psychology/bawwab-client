@@ -1,0 +1,48 @@
+.lp-container h3 {
+    margin-top: 0;
+}
+
+.lp-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+    max-width: 60em;
+    margin: 0 auto;
+}
+
+.lp-overview_features, .lp-overview_mission {
+    padding: 0 2em;
+}
+
+.lp-overview_leftPhoto,
+.lp-overview_rightPhoto {
+    border-radius: 1em;
+    background-size: cover;
+    min-height: 15em;
+}
+
+.lp-overview_leftPhoto {
+    background-image: url(../../img/foto_links_oben.jpg);
+    background-position: right;
+}
+
+.lp-overview_rightPhoto {
+    background-image: url(../../img/foto_rechts_unten.jpg);
+    background-position: center;
+}
+
+.lp-container_goto {
+    text-align: center;
+    margin-top: 3em;
+}
+
+/* use same breakpoint as pure-m */
+@media screen and (max-width: 48em) {
+    .lp-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .lp-overview_features, .lp-overview_mission {
+        padding: 0;
+    }
+}

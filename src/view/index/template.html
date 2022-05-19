@@ -1,16 +1,16 @@
-<div class="landingpage">
+<div class="lp-container">
 	<h2>{{ $t('v.index.description') }}</h2>
-	<div class="overview">
-		<div class="left-photo">
+	<div class="lp-overview">
+		<div class="lp-overview_leftPhoto">
 		</div>
-		<div class="mission" v-html="$t('v.index.mission')">
+		<div class="lp-overview_mission" v-html="$t('v.index.mission')">
 		</div>
-		<div class="features" v-html="$t('v.index.features')">
+		<div class="lp-overview_features" v-html="$t('v.index.features')">
 		</div>
-		<div class="right-photo">
+		<div class="lp-overview_rightPhoto">
 		</div>
 	</div>
-	<p class="goto">
+	<p class="lp-container_goto">
 		<a v-if="state.user === null" class="btn high" href="/api/session/login">{{ $t('v.index.login') }}</a>
 		<router-link v-else class="btn high" :to="{name: 'workspaces'}">{{ $t('v.index.toprojects') }}</router-link>
 	</p>

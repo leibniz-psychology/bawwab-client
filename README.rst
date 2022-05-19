@@ -33,3 +33,49 @@ You can also build and and run a backend-independent version with mocked API cal
 
 	make run MOCK=1
 
+Coding style
+------------
+
+CSS class names
+^^^^^^^^^^^^^^^
+
+For non-overriding, non-marker, non-framework-bound classes we use a
+mixture of the BEM and EnduringCSS naming-conventions:
+
+.. code-block::
+
+    .[micronamespace][-blockContextOrComponent][_descendantNode][--modifier]
+
+where ``micronamespace`` is a flat-case abbreviation of up
+to 3 chars to communicate context and make it easier to avoid
+collisions. ``blockContextOrComponent`` describes a visual block we want
+to style (e.g. an item in a list). ``modifier`` is used to communicate
+state or variants of an element.
+
+Example: ``.faq-toc_container--hide``
+
+List of micro-namespaces:
+
+app
+	things that (currently) do not have a more specific defining context
+faq
+	things in the broader context of the faq-page
+av
+	application-view
+ac
+	account-view
+lp
+	landing-page-view
+tos
+	things in the broader context of the tos(-prompt)
+we
+	workspace-export-view
+wp
+	workspace-package-view
+wsp
+	workspace-security-prompt-view
+wsh
+	workspace-share-view
+ws
+	workspace-show-view
+

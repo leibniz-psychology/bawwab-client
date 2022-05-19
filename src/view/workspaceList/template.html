@@ -1,4 +1,4 @@
-<div class="workspace-list">
+<div class="wl-container">
 	<h2>{{ $t('v.workspaceList.projects') }}</h2>
 
 	<action-bar v-if="!disabled">
@@ -6,60 +6,60 @@
 			<p>{{ $t('v.workspaceList.description') }}</p>
 		</template>
 		<template #right>
-			<div class="wl-general-actions">
+			<div class="wl-generalActions">
 				<router-link class="btn low" :to="{name: 'workspaceImport'}"><i class="fas fa-file-import"></i> {{ $t('v.workspaceList.import') }}</router-link>
 				<action-button icon="plus-square" :f="createWorkspace" importance="high">{{ $t('v.workspaceList.create') }}</action-button>
 			</div>
 		</template>
 	</action-bar>
-	<form class="filter">
+	<form class="wl-filters">
 	<!--<input type="search" id="filtersearch" v-model="filtertext">-->
-	<div>
-		<input type="radio" name="filter" value="mine" id="filtermine" v-model="filter">
-		<label for="filtermine">{{ $t('v.workspaceList.myprojects') }}</label>
+	<div class="wl-filter">
+		<input type="radio" name="filter" value="mine" id="filtermine" v-model="filter" class="wl-filter_radio">
+		<label for="filtermine" class="wl-filter_label">{{ $t('v.workspaceList.myprojects') }}</label>
 	</div>
-	<div>
-		<input type="radio" name="filter" value="shared" id="filtershared" v-model="filter">
-		<label for="filtershared">{{ $t('v.workspaceList.sharedprojects') }}</label>
+	<div class="wl-filter">
+		<input type="radio" name="filter" value="shared" id="filtershared" v-model="filter" class="wl-filter_radio">
+		<label for="filtershared" class="wl-filter_label">{{ $t('v.workspaceList.sharedprojects') }}</label>
 	</div>
-	<div>
-		<input type="radio" name="filter" value="world" id="filterworld" v-model="filter">
-		<label for="filterworld">{{ $t('v.workspaceList.publicprojects') }}</label>
+	<div class="wl-filter">
+		<input type="radio" name="filter" value="world" id="filterworld" v-model="filter" class="wl-filter_radio">
+		<label for="filterworld" class="wl-filter_label">{{ $t('v.workspaceList.publicprojects') }}</label>
 	</div>
 	</form>
-	<table class="workspaces pure-table pure-table-striped pure-table-horizontal" v-if="filteredWorkspaces.length > 0">
-		<col class="wl-column-title">
-		<col class="wl-column-description">
-		<col class="wl-column-publishedBy" v-if="filter==='world' || filter==='shared'">
-		<col class="wl-column-applications">
-		<col class="wl-column-actions">
+	<table class="wl-table workspaces pure-table pure-table-striped pure-table-horizontal" v-if="filteredWorkspaces.length > 0">
+		<col class="wl-table_titleColumn">
+		<col class="wl-table_descriptionColumn">
+		<col class="wl-table_publishedByColumn" v-if="filter==='world' || filter==='shared'">
+		<col class="wl-table_applicationsColumn">
+		<col class="wl-table_actionsColumn">
 	<thead>
 		<tr>
-			<th class="title">{{ $t('v.workspaceList.thtitle') }}</th>
-			<th class="description">{{ $t('v.workspaceList.thdescription') }}</th>
-			<th class="publishedBy" v-if="filter==='world' || filter==='shared'">{{ $t('v.workspaceList.thcreatedBy') }}</th>
-			<th class="applications">{{ $t('v.workspaceList.thapplications') }}</th>
-			<th class="actions">{{ $t('v.workspaceList.thactions') }}</th>
+			<th class="wl-table_title">{{ $t('v.workspaceList.thtitle') }}</th>
+			<th class="wl-table_description">{{ $t('v.workspaceList.thdescription') }}</th>
+			<th class="wl-table_publishedBy" v-if="filter==='world' || filter==='shared'">{{ $t('v.workspaceList.thcreatedBy') }}</th>
+			<th class="wl-table_applications">{{ $t('v.workspaceList.thapplications') }}</th>
+			<th class="wl-table_actions">{{ $t('v.workspaceList.thactions') }}</th>
 		</tr>
 	</thead>
 	<tbody>
 	<tr v-for="w in filteredWorkspaces" :key="w.metadata._id">
-		<td class="title">
+		<td class="wl-table_title">
 			<router-link :to="{name: 'workspace', params: {wsid: w.metadata._id}}">
 				<span v-if="w.metadata.name">{{ w.metadata.name }}</span>
 				<span v-else class="placeholder">{{ $t('v.workspaceList.unnamed') }}</span>
 			</router-link>
 		</td>
-		<td class="description">
+		<td class="wl-table_description">
 			<router-link :to="{name: 'workspace', params: {wsid: w.metadata._id}}">
 				<span v-if="w.metadata.description">{{ w.metadata.description }}</span>
 				<span v-else>&nbsp;</span>
 			</router-link>
 		</td>
-		<td class="publishedBy" v-if="filter==='world' || filter==='shared'">
+		<td class="wl-table_publishedBy" v-if="filter==='world' || filter==='shared'">
 			<span>{{ w.owner().join(", ") }}</span>
 		</td>
-		<td class="applications">
+		<td class="wl-table_applications">
 			<ul>
 				<li v-for="a in w.runnableApplications (username)" :key="a._id">
 					<router-link :to="{name: 'application', params: {wsid: w.metadata._id, appid: a._id}}">
@@ -68,21 +68,21 @@
 				</li>
 			</ul>
 		</td>
-		<td class="actions">
-			<ul class="actions-container">
-				<li class="action-container" v-if="w.getPermissions (this.username)[0].canShare ()">
-					<router-link class="action-button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
-					<span class="action-tooltip popup">{{ $t('v.workspaceList.share') }}</span>
+		<td class="wl-table_actions">
+			<ul class="wl-actionsList">
+				<li class="wl-actionItem" v-if="w.getPermissions (this.username)[0].canShare ()">
+					<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
+					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.share') }}</span>
 				</li>
-				<li class="action-container" v-if="w.getPermissions (this.username)[0].canRead ()">
-					<action-button class="action-button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
-					<span class="action-tooltip popup">{{ $t('v.workspaceList.copy') }}</span>
+				<li class="wl-actionItem" v-if="w.getPermissions (this.username)[0].canRead ()">
+					<action-button class="wl-actionItem_button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
+					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.copy') }}</span>
 				</li>
-				<li class="action-container" v-if="w.getPermissions (this.username)[0].canDelete ()">
-					<router-link class="action-button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
-					<span class="action-tooltip popup">{{ $t('v.workspaceList.delete') }}</span>
+				<li class="wl-actionItem" v-if="w.getPermissions (this.username)[0].canDelete ()">
+					<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
+					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.delete') }}</span>
 				</li>
-				<li><dropdown>
+				<li class="wl-actionItem"><dropdown>
 					<template v-slot:button>
 						<i class="btn small fas fa-ellipsis-h"></i>
 					</template>

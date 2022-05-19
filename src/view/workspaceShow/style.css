@@ -1,28 +1,28 @@
-.workspaceItem .shared ul, .workspaceItem .owners ul {
+.ws-workspace_shared ul, .ws-workspace_owners ul {
     list-style-type: none;
     display: inline;
     margin: 0;
     padding: 0;
 }
 
-.workspaceItem .title {
+.ws-headline_title {
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
-.workspaceItem .title, .workspaceItem .description {
+.ws-headline_title, .ws-workspace_description {
     display: flex;
 }
 
-.workspaceItem .title > *, .workspaceItem .description > * {
+.ws-headline_title > *, .ws-workspace_description > * {
     flex-grow: 1;
 }
 
-.workspaceItem .shared ul li, .workspaceItem .owners ul li {
+.ws-workspace_shared li, .ws-workspace_owners li {
     display: inline;
 }
 
-.workspaceItem .metadata {
+.ws-workspace_metadata {
     font-size: 0.9em;
     list-style-type: none;
     margin: 0;
@@ -36,12 +36,12 @@
     align-items: center;
 }
 
-.ws-headline-title, .ws-headline-title-input {
+.ws-headline_title, .ws-headline_titleInput {
     display: flex;
     flex-grow: 1;
 }
 
-.ws-headline-title {
+.ws-headline_title {
     margin: 0.6em 0em;
 }
 
@@ -50,20 +50,20 @@
     text-align: end;
 }
 
-.ws-editModeButtons .ws-editModeButtons-discard {
+.ws-editModeButtons_discardButton {
     padding: 0;
     margin-left: 2em;
 }
 
-.ws-primary-actions {
+.ws-primaryActions {
     margin-bottom: 2em;
 }
 
-.ws-secondary-actions {
+.ws-secondaryActions {
     margin-bottom: 2em;
 }
 
-.btn.ws-action-button-inline {
+.btn.ws-actionButton {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     padding-left: 0;
@@ -74,6 +74,6 @@
     margin-bottom: 2em;
 }
 
-.ws-action-button-inline.ws-action-delete {
+.ws-actionButton.ws-actionDelete {
     color: rgb(212 0 0);
 }

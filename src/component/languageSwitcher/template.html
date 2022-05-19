@@ -1,3 +1,3 @@
-<ul class="topline-nav">
-	<li v-for="l in $i18n.availableLocales"><a @click="switchTo(l)" :class="isActive(l)">{{ l }}</a></li>
+<ul class="app-languageSwitcher">
+	<li class="app-languageSwitcher_item" v-for="l in $i18n.availableLocales"><a @click="switchTo(l)" :class="isActive(l)">{{ l }}</a></li>
 </ul>

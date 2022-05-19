@@ -1,0 +1,21 @@
+.tos-prompt_accept {
+    list-style-type: none;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/* align text and checkboxes */
+.tos-prompt_accept li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.tos-prompt_accept li input {
+    margin-right: 0.5em;
+    display: block;
+}
+
+.tos-prompt_accept li label {
+    display: block;
+}

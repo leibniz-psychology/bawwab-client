@@ -1,21 +1,21 @@
-.application-item {
+.app-applicationItem {
     margin-bottom: 0.5em;
 }
 
-.ai-icon {
+.app-applicationItem_icon {
     display: flex;
 }
 
-.ai-information {
+.app-applicationItem_information {
     display: flex;
     align-items: center;
 }
 
-.ai-description {
+.app-applicationItem_description {
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
 
-.ai-actions {
+.app-applicationItem_actions {
     text-align: right;
 }

@@ -1,6 +1,6 @@
-<modal :title="$t('v.tosPrompt.welcome')" icon="file-alt" :closeName="$t('v.tosPrompt.close')" :closeLink="{name: 'index'}" :scaling="true" class="tosprompt">
+<modal :title="$t('v.tosPrompt.welcome')" icon="file-alt" :closeName="$t('v.tosPrompt.close')" :closeLink="{name: 'index'}" :scaling="true" class="tos-prompt">
 	<p>{{ $t('v.tosPrompt.acceptToContinue') }}</p>
-	<ul class="accept">
+	<ul class="tos-prompt_accept">
 		<li v-for="term of termsForCurrentLanguage">
 			<input type="checkbox" :id="`accept-${term.id}`" v-model="checkedTerms" :value="term.id">&nbsp;
 			<label :for="`accept-${term.id}`" v-html="acceptText (term.kind)"></label>
