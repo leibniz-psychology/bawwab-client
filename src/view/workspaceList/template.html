@@ -12,19 +12,19 @@
 			</div>
 		</template>
 	</action-bar>
-	<form class="filter">
+	<form class="wl-filters">
 	<!--<input type="search" id="filtersearch" v-model="filtertext">-->
-	<div>
-		<input type="radio" name="filter" value="mine" id="filtermine" v-model="filter">
-		<label for="filtermine">{{ $t('v.workspaceList.myprojects') }}</label>
+	<div class="wl-filter">
+		<input type="radio" name="filter" value="mine" id="filtermine" v-model="filter" class="wl-filter-radio">
+		<label for="filtermine" class="wl-filter-label">{{ $t('v.workspaceList.myprojects') }}</label>
 	</div>
-	<div>
-		<input type="radio" name="filter" value="shared" id="filtershared" v-model="filter">
-		<label for="filtershared">{{ $t('v.workspaceList.sharedprojects') }}</label>
+	<div class="wl-filter">
+		<input type="radio" name="filter" value="shared" id="filtershared" v-model="filter" class="wl-filter-radio">
+		<label for="filtershared" class="wl-filter-label">{{ $t('v.workspaceList.sharedprojects') }}</label>
 	</div>
-	<div>
-		<input type="radio" name="filter" value="world" id="filterworld" v-model="filter">
-		<label for="filterworld">{{ $t('v.workspaceList.publicprojects') }}</label>
+	<div class="wl-filter">
+		<input type="radio" name="filter" value="world" id="filterworld" v-model="filter" class="wl-filter-radio">
+		<label for="filterworld" class="wl-filter-label">{{ $t('v.workspaceList.publicprojects') }}</label>
 	</div>
 	</form>
 	<table class="workspaces pure-table pure-table-striped pure-table-horizontal" v-if="filteredWorkspaces.length > 0">

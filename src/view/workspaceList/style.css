@@ -105,3 +105,32 @@ td.wl-title {
 .wl-column-actions {
     width: 17%;
 }
+
+.wl-filters {
+    border-bottom: 0.1em solid var(--gray-base);
+    padding: 0 0.5em;
+}
+
+.wl-filter {
+    display: inline-block;
+    position: relative;
+    bottom: -0.1em;
+}
+
+.wl-filter-radio {
+    display: none;
+}
+
+.wl-filter-label {
+    padding: 0.5em;
+    background-color: var(--gray-light);
+    cursor: pointer;
+    border: 0.1em solid var(--gray-base);
+    margin-right: 0.3em;
+    display: inline-block;
+}
+
+.wl-filter-radio:checked ~ .wl-filter-label {
+    background-color: white;
+    border-bottom: 0.1em solid white;
+}
