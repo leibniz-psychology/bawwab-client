@@ -4,6 +4,7 @@ import { ConductorState } from '../../conductor.js';
 import { BorgErrorNonexistent } from '../../borg.js';
 import WorkspaceVersionComponent from '../../component/workspaceVersion';
 import template from './template.html';
+import "./style.css";
 
 export default {
 	name: 'ApplicationView',
