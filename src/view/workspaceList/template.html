@@ -78,7 +78,7 @@
 					<action-button class="action-button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
 					<span class="action-tooltip popup">{{ $t('v.workspaceList.copy') }}</span>
 				</li>
-				<li class="action-container">
+				<li class="action-container" v-if="w.getPermissions (this.username)[0].canDelete ()">
 					<router-link class="action-button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
 					<span class="action-tooltip popup">{{ $t('v.workspaceList.delete') }}</span>
 				</li>
