@@ -132,10 +132,6 @@ li {
 	margin-right: 0.3em;
 }
 
-.main p {
-	margin-bottom: 1.6em;
-}
-
 .wrapped {
 	margin: 0 auto;
 	max-width: 80%;
@@ -188,19 +184,6 @@ header .product-logo img {
 	padding: 1em;
 }
 
-.topline-nav {
-	text-align: right;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.topline-nav li {
-	display: inline-block;
-	margin-left: 0.3em;
-	text-transform: uppercase;
-}
-
 /* formatting for two-part product name */
 .product-name {
 	font-family: var(--font-product);
@@ -241,6 +224,10 @@ header .product-logo img {
 	padding-top: 3em;
 	padding-bottom: 3em;
 	background-color: white;
+}
+
+.main p {
+	margin-bottom: 1.6em;
 }
 
 main {
@@ -437,11 +424,6 @@ dl dt {
 
 dl dd {
 	margin: 0.3em 0em 0.6em 0em;
-}
-
-.mailpreview {
-	word-break: break-all;
-	white-space: pre-wrap;
 }
 
 .horizontal-ruler {

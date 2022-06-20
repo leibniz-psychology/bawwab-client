@@ -46,3 +46,9 @@
 .sp-add-address-btn {
     margin-bottom: 1.0em;
 }
+
+
+.sp-mailpreview {
+    word-break: break-all;
+    white-space: pre-wrap;
+}
