@@ -206,31 +206,9 @@ header .product-logo img {
 	font-family: var(--font-product);
 }
 
-#main-nav {
+.app-main-nav {
 	background-color: #FFFFFF;
 	padding: 0.7em 2em 0.7em 0;
-}
-
-#main-nav > ul {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-}
-
-#main-nav > ul li {
-	display: inline-block;
-    margin-left: 1.5em;
-}
-
-#main-nav > ul li a {
-	font-size: 1.25em;
-	color: #352071;
-	font-family: var(--font-header);
-	font-weight: 500;
-}
-
-#main-nav > ul li a.active {
-	color: var(--magenta-text);
 }
 
 .app-main-nav-items {
@@ -239,8 +217,24 @@ header .product-logo img {
 	justify-content: flex-end;
 }
 
-.app-main-nav-items li {
+.app-main-nav-item {
+	display: inline-block;
 	margin-left: 1.5em;
+}
+
+.app-main-nav-item .router-link-active {
+	color: var(--magenta-text);
+}
+
+.app-main-nav-item a {
+	font-size: 1.25em;
+	color: #352071;
+	font-family: var(--font-header);
+	font-weight: 500;
+}
+
+.app-main-nav-item a.active {
+	color: var(--magenta-text);
 }
 
 .main {
@@ -359,10 +353,6 @@ table.pure-table {
 .btn.low {
 }
 
-#main-nav ul li a.router-link-active {
-	color: var(--magenta-text);
-}
-
 span.placeholder {
 	opacity: 0.5;
 }
@@ -438,8 +428,7 @@ details.dropdown div.body > ul li {
 }
 
 .usermenu ul li {
-    /* Must be !important, so it overrides #main-nav */
-	margin: 0.3em 0 !important;
+	margin: 0.3em 0;
 }
 
 dl dt {

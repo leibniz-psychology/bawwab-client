@@ -3,7 +3,7 @@ import './style.css';
 
 export default {
 	name: 'Login',
-    props: ['session'],
+    props: ['session', 'cssClass'],
 	data: _ => ({
 	}),
     template: template,
