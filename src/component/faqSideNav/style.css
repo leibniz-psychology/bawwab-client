@@ -48,14 +48,14 @@
     align-items: center;
 }
 
-.faq-toc_toplevelitem {
+.faq-toc_topLevelItem {
     display: grid;
     grid-template-columns: 16rem 3rem;
     font-weight: 600;
     margin-bottom: 1.0rem;
 }
 
-.faq-toc_secondlevelitem {
+.faq-toc_secondLevelItem {
     font-weight: 500;
 }
 

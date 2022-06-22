@@ -1,14 +1,19 @@
 /*
 	########## CSS-Class-Naming-Convention ##########
 	(For non-overriding, non-marker, non-framework-bound classes)
-		.[micronamespace][-contextComponent][_descendantNode][--modifier]
+	This a bit of a mixture of the BEM and EnduringCSS naming-conventions:
+		.[micronamespace][-blockContextOrComponent][_descendantNode][--modifier]
+	where micronamespace is a flat-case abbreviation of up to 3 chars to communicate context and make it easier to
+	avoid collisions. "blockContextOrComponent" describes the "visually self-contained block" we want to style
+	(e.g. an item in a list). "modifier" is used to communicate state or variants of an element.
+
 	Example:
 		.faq-toc_container--hide
 
 	List of micro-namespaces:
-
-		app - things that do not have a specific defining context
-
+		* app - things that (currently) do not have a more specific defining context
+		* faq - things in the broader context of the faq-page
+		* av - application view
  */
 
 :root {
@@ -202,34 +207,34 @@ header .product-logo img {
 	font-family: var(--font-product);
 }
 
-.app-main-nav {
+.app-mainNav {
 	background-color: #FFFFFF;
 	padding: 0.7em 2em 0.7em 0;
 }
 
-.app-main-nav-items {
+.app-mainNav_items {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 }
 
-.app-main-nav-item {
+.app-mainNav_item {
 	display: inline-block;
 	margin-left: 1.5em;
 }
 
-.app-main-nav-item .router-link-active {
+.app-mainNav_item .router-link-active {
 	color: var(--magenta-text);
 }
 
-.app-main-nav-item a {
+.app-mainNav_item a {
 	font-size: 1.25em;
 	color: #352071;
 	font-family: var(--font-header);
 	font-weight: 500;
 }
 
-.app-main-nav-item a.active {
+.app-mainNav_item a.active {
 	color: var(--magenta-text);
 }
 
@@ -419,16 +424,6 @@ details.dropdown div.body > ul {
 
 details.dropdown div.body > ul li {
 	display: block;
-}
-
-.dropdown.usermenu .body {
-	top: 2rem;
-	right: -1rem;
-	padding: 1em 2em;
-}
-
-.usermenu ul li {
-	margin: 0.3em 0;
 }
 
 dl dt {

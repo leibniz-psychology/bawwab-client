@@ -1,8 +1,8 @@
 <div>
 	<p v-if="nonexistent || !archives">{{ $t('c.workspaceVersion.nonexistent') }}</p>
-	<div class="versions" v-else>
-	<table>
-		<thead>
+	<div class="app-versions" v-else>
+	<table class="app-versions_table">
+		<thead class="app-versions_thead">
 			<tr>
 				<th class="select"><input type="checkbox" v-model="selectAll"></th>
 				<th colspan="3">

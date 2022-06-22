@@ -1,4 +1,14 @@
-.initials {
+.app-usermenu .body {
+    top: 2rem;
+    right: -1rem;
+    padding: 1em 2em;
+}
+
+.app-usermenu ul li {
+    margin: 0.3em 0;
+}
+
+.app-usermenu_initials {
     background-color: var(--magenta-dark-base);
     color: white;
     font-weight: bold;

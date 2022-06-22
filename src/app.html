@@ -51,13 +51,13 @@
 			<!--<span class="one">Psych</span><span class= "two">Notebook</span>-->
 			</router-link>
         </div>
-        <nav id="main-nav" class="app-main-nav">
-          <ul class="app-main-nav-items">
-            <li v-if="isLoggedIn" class="app-main-nav-item">
+        <nav id="main-nav" class="app-mainNav">
+          <ul class="app-mainNav_items">
+            <li v-if="isLoggedIn" class="app-mainNav_item">
               <router-link :to="{name: 'workspaces'}">{{ $t('app.projects') }}</router-link>
             </li>
-			<li class="app-main-nav-item"><router-link :to="{name: 'faq'}">{{ $t('app.help') }}</router-link></li>
-            <login-item :session="state.session" class="app-main-nav-item"></login-item>
+			<li class="app-mainNav_item"><router-link :to="{name: 'faq'}">{{ $t('app.help') }}</router-link></li>
+            <login-item :session="state.session" class="app-mainNav_item"></login-item>
           </ul>
         </nav>
       </div>
