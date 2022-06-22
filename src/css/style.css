@@ -1,3 +1,16 @@
+/*
+	########## CSS-Class-Naming-Convention ##########
+	(For non-overriding, non-marker, non-framework-bound classes)
+		.[micronamespace][-contextComponent][_descendantNode][--modifier]
+	Example:
+		.faq-toc_container--hide
+
+	List of micro-namespaces:
+
+		app - things that do not have a specific defining context
+
+ */
+
 :root {
 	/* colorscheme */
 	/* Informations- und Recherchedienste */

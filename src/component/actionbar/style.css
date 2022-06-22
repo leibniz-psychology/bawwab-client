@@ -1,9 +1,9 @@
-.actionbar {
+.app-actionbar {
 	margin-bottom: 1em;
     display: flex;
 }
 
-.actionbar--right {
+.app-actionbar_right {
     display: flex;
     flex-wrap: wrap;
     justify-content: end;
