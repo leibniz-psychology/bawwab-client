@@ -1,29 +1,29 @@
 /*NOTE: --- Evtl. workspaces runterbrechen auf single-classes ---*/
-.wl-general-actions {
+.wl-generalActions {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.wl-actions .dropdown .body {
+.wl-table_actions .dropdown .body {
     right: -1rem;
 }
-.wl-actions-container {
+.wl-actionsList {
     display: flex;
     justify-content: center;
     /* Line-height for ul is overridden above, so reset to pure’s default */
     line-height: 1.15;
 }
 
-.wl-action-tooltip {
-    display: none
+.wl-actionItem_tooltip {
+    display: none;
 }
 
-.action-button:hover + .wl-action-tooltip {
+.wl-actionItem_button:hover + .wl-actionItem_tooltip {
     display: block;
 }
 
-.wl-action-tooltip {
+.wl-actionItem_tooltip {
     padding: 0.3em;
     pointer-events: none;
     box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
@@ -34,75 +34,75 @@
     z-index: 1000;
 }
 
-table.workspaces {
+.wl-table {
     width: 100%;
     margin: 1em 0;
 }
 
-table.workspaces tr td {
+.wl-table tr td {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     max-width: 0;
 }
 
-td.wl-title {
+td.wl-table_title {
     text-align: left;
     font-weight: 500;
 }
 
-.wl-description {
+.wl-table_description {
     text-align: left;
 }
 
-.wl-applications {
+.wl-table_applications {
     text-align: center;
 }
 
-.wl-applications ul {
+.wl-table_applications ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.wl-applications li {
+.wl-table_applications li {
     display: inline;
     margin: 0 0.3em;
 }
 
-.wl-actions {
+.wl-table_actions {
     text-align: center;
     overflow: visible;
 }
 
-.wl-actions ul {
+.wl-actionsList {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.wl-actions li {
+.wl-table_actions li {
     display: inline;
     margin: 0;
 }
 
-.wl-column-title {
+.wl-table_titleColumn {
     width: 23%;
 }
 
-.wl-column-description {
+.wl-table_descriptionColumn {
     max-width: 46%;
 }
 
-.wl-column-publishedBy {
+.wl-table_publishedByColumn {
     width: 17%;
 }
 
-.wl-column-applications {
+.wl-table_applicationsColumn {
     width: 17%;
 }
 
-.wl-column-actions {
+.wl-table_actionsColumn {
     width: 17%;
 }
 
@@ -117,11 +117,11 @@ td.wl-title {
     bottom: -0.1em;
 }
 
-.wl-filter-radio {
+.wl-filter_radio {
     display: none;
 }
 
-.wl-filter-label {
+.wl-filter_label {
     padding: 0.5em;
     background-color: var(--gray-light);
     cursor: pointer;
@@ -130,7 +130,7 @@ td.wl-title {
     display: inline-block;
 }
 
-.wl-filter-radio:checked ~ .wl-filter-label {
+.wl-filter_radio:checked ~ .wl-filter_label {
     background-color: white;
     border-bottom: 0.1em solid white;
 }

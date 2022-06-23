@@ -14,6 +14,10 @@
 		* app - things that (currently) do not have a more specific defining context
 		* faq - things in the broader context of the faq-page
 		* av - application view
+		* ac - account view
+		* lp - landing-page view
+		* tos - things in the broader context of the tos(-prompt)
+		* we - workspace-export view
  */
 
 :root {

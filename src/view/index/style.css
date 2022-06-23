@@ -1,8 +1,8 @@
-.landingpage h3 {
+.lp-container h3 {
     margin-top: 0;
 }
 
-.landingpage .overview {
+.lp-overview {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3em;
@@ -10,39 +10,39 @@
     margin: 0 auto;
 }
 
-.landingpage .features, .landingpage .mission {
+.lp-overview_features, .lp-overview_mission {
     padding: 0 2em;
 }
 
-.landingpage .left-photo,
-.landingpage .right-photo {
+.lp-overview_leftPhoto,
+.lp-overview_rightPhoto {
     border-radius: 1em;
     background-size: cover;
     min-height: 15em;
 }
 
-.landingpage .left-photo {
+.lp-overview_leftPhoto {
     background-image: url(../../img/foto_links_oben.jpg);
     background-position: right;
 }
 
-.landingpage .right-photo {
+.lp-overview_rightPhoto {
     background-image: url(../../img/foto_rechts_unten.jpg);
     background-position: center;
 }
 
-.landingpage .goto {
+.lp-container_goto {
     text-align: center;
     margin-top: 3em;
 }
 
 /* use same breakpoint as pure-m */
 @media screen and (max-width: 48em) {
-    .landingpage .overview {
+    .lp-overview {
         grid-template-columns: 1fr;
     }
 
-    .landingpage .features, .landingpage .mission {
+    .lp-overview_features, .lp-overview_mission {
         padding: 0;
     }
 }
