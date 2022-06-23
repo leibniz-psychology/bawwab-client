@@ -15,6 +15,10 @@
     line-height: 1.15;
 }
 
+.wl-actionItem ul {
+    margin: 0;
+}
+
 .wl-actionItem_tooltip {
     display: none;
 }
@@ -70,7 +74,7 @@ td.wl-table_title {
     margin: 0 0.3em;
 }
 
-.wl-table_actions {
+.wl-table .wl-table_actions {
     text-align: center;
     overflow: visible;
 }

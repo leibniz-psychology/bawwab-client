@@ -82,7 +82,7 @@
 					<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
 					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.delete') }}</span>
 				</li>
-				<li><dropdown>
+				<li class="wl-actionItem"><dropdown>
 					<template v-slot:button>
 						<i class="btn small fas fa-ellipsis-h"></i>
 					</template>
