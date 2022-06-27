@@ -96,10 +96,10 @@ export default {
 			}
 		},
 		makeTitleEditable: function () {
-			this.makeEditable('.ws-headline-title-input');
+			this.makeEditable('.ws-headline_titleInput');
 		},
 		makeDescriptionEditable: function () {
-			this.makeEditable('.description textarea');
+			this.makeEditable('.ws-workspace_description textarea');
 		},
 		discard: async function () {
 			this.editable = false;
