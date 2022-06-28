@@ -8,7 +8,7 @@
 
 		<div class="ws-headline">
 			<h3 class="ws-headline_title">
-				<input :aria-label="$t('v.workspaceShow.projectname')" type="text" v-if="editable" :placeholder="$t('v.workspaceShow.projectname')" :value="name" class="ws-headline_titleInput">
+				<input :aria-label="$t('v.workspaceShow.projectname')" type="text" v-if="editable" :placeholder="$t('v.workspaceShow.projectname')" :value="name" class="ws-headline_titleInput" ref="title">
 				<span v-else-if="hasName" v-text="name"></span>
 				<span v-else-if="canEditMeta" class="placeholder" @click="makeTitleEditable">{{ $t('v.workspaceShow.noTitle') }}</span>
 			</h3>
@@ -40,7 +40,7 @@
 		</ul>
 
 		<p class="ws-workspace_description">
-			<textarea :aria-label="$t('v.workspaceShow.projectdescription')" v-if="editable" :placeholder="$t('v.workspaceShow.projectdescription')" v-text="description"></textarea>
+			<textarea :aria-label="$t('v.workspaceShow.projectdescription')" v-if="editable" :placeholder="$t('v.workspaceShow.projectdescription')" v-text="description" ref="description"></textarea>
 			<span v-else-if="hasDescription" v-text="description"></span>
 			<span v-else-if="canEditMeta" class="placeholder" @click="makeDescriptionEditable">{{ $t('v.workspaceShow.noDescription') }}</span>
 		</p>
@@ -58,7 +58,7 @@
 			<router-link class="btn ws-actionButton" v-if="permissions.canShare ()" :to="{name: 'workspaceShare', params: {wsid: workspace.metadata._id}}"><i class="fas fa-share"></i> {{ $t('v.workspaceShow.share') }}</router-link>
 			<router-link class="btn ws-actionButton" v-if="permissions.canShare ()" :to="{name: 'workspacePublish', params: {wsid: workspace.metadata._id}}"><i class="fas fa-globe"></i> {{ $t('v.workspaceShow.publish') }}</router-link>
 			<router-link class="btn ws-actionButton" v-if="permissions.canRead ()" :to="{name: 'workspaceExport', params: {wsid: workspace.metadata._id}}"><i class="fas fa-file-export"></i> {{ $t('v.workspaceShow.export') }}</router-link>
-			<action-button v-if="permissions.canRead()" icon="copy" :f="copy" class="copy ws-actionButton">{{ $t('v.workspaceShow.copy') }}</action-button>
+			<action-button v-if="permissions.canRead()" icon="copy" :f="copy" ref="copybtn" class="copy ws-actionButton">{{ $t('v.workspaceShow.copy') }}</action-button>
 		</div>
 
 		<div class="ws-applications">

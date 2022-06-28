@@ -29,8 +29,7 @@ export default {
 			const autocopy = this.settings.get('autocopySharedReadOnly');
 			if (autocopy && this.isReadOnlyWorkspace) {
 				/* click the button, so there will be visual feedback */
-				const copyButton = this.$el.querySelector ('.ws-secondaryActions .copy');
-				copyButton.click ();
+				await this.$refs.copybtn.clicked ();
 			}
 			await this.setWorkspaceVisited();
 		} else {
@@ -70,8 +69,8 @@ export default {
 			await this.settings.sync();
 		},
 		save: async function () {
-			const name = this.$el.querySelector ('.ws-headline-title-input').value;
-			const description = this.$el.querySelector ('.ws-workspace_description textarea').value;
+			const name = this.$refs.title.value;
+			const description = this.$refs.description.value;
 			const w = this.workspace;
 
 			w.metadata.name = name;
@@ -84,22 +83,25 @@ export default {
 			await this.workspaces.unshare (this.workspace, `g:${group}`);
 		},
 		copy,
-		makeEditable: async function (focus) {
+		makeEditable: function () {
 			if (!this.canEditMeta) {
-				return;
+				return false;
+			} else {
+				this.editable = true;
+				return true;
 			}
-			this.editable = true;
-			if (focus) {
-				/* make sure the elements are rendered */
+		},
+		makeTitleEditable: async function () {
+			if (this.makeEditable()) {
 				await nextTick ();
-				this.$el.querySelector (focus).focus ();
+				this.$refs.title.focus ();
 			}
 		},
-		makeTitleEditable: function () {
-			this.makeEditable('.ws-headline_titleInput');
-		},
-		makeDescriptionEditable: function () {
-			this.makeEditable('.ws-workspace_description textarea');
+		makeDescriptionEditable: async function () {
+			if (this.makeEditable()) {
+				await nextTick ();
+				this.$refs.description.focus ();
+			}
 		},
 		discard: async function () {
 			this.editable = false;
