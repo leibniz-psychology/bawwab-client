@@ -11,8 +11,8 @@ export default {
 		ssoLogoutUrl: function () {
 			const resolved = this.$router.resolve ({name: 'index'});
 			const redirectUrl = new URL (resolved.href, window.location.href);
-			const u = new URL ('https://sso.leibniz-psychology.org/auth/realms/ZPID/protocol/openid-connect/logout');
-			u.searchParams.append ('redirect_uri', redirectUrl);
+			const u = new URL ('/api/session/logout', window.location.href);
+			u.searchParams.append ('next', redirectUrl);
 			return u;
 		},
 	},
