@@ -25,7 +25,6 @@ export default class Workspaces {
 		/* use same callback */
 		registerRunWithCb ('workspaces.copy', this.onCreate);
 		registerRunWithCb ('workspaces.import', this.onCreate);
-		registerRunWithCb ('workspaces.joinShared', this.onCreate);
 
 		registerRunWithCb ('workspaces.update', this.onUpdate);
 		/* use the same callback */
@@ -40,6 +39,8 @@ export default class Workspaces {
 		emregister ('workspaces.start', this.onStart.bind (this));
 		emregister ('workspaces.export', this.onExport.bind (this));
 		emregister ('workspaces.packageSearch', this.onPackageSearch.bind (this));
+		/* When a new workspace is added through an action */
+		emregister ('workspaces.discover', this.onDiscover.bind (this));
 	}
 
 	/* Run workspace command with more arguments
@@ -104,8 +105,10 @@ export default class Workspaces {
 	}
 
 	onCreate (args, ret) {
-		const ws = ret[0];
-		this.workspaces.set (ws.id, ws);
+		const ws = ret[0] ?? null;
+		if (ws !== null) {
+			this.workspaces.set (ws.id, ws);
+		}
 		return ws;
 	}
 
@@ -147,26 +150,6 @@ export default class Workspaces {
 			args.push ('-w');
 		}
 		return await this.runWith ('workspaces.share', ws, args);
-	}
-
-	/* Implicitly share a workspace through an action link
-	 */
-	async shareAction (ws, isWrite) {
-		const command = ['workspace', '-d', ws.path, '-f', 'json', 'share', 'g:{user}'];
-		if (isWrite) {
-			command.push ('-w');
-		}
-		const r = await postData('/api/action', {
-				name: 'run',
-				arguments: {trigger: 'workspaces.create', args: ws.path},
-				command: command,
-				/* 100 years (not kidding) */
-				validFor: 100*365*24*60*60,
-				/* yes, also not kidding */
-				usesRemaining: 10**10,
-				});
-		const action = await getResponse (r);
-		return action.token;
 	}
 
 	async unshare (ws, spec) {
@@ -251,6 +234,12 @@ export default class Workspaces {
 	async packageUpgrade (ws) {
 		const args = ['package', 'upgrade']
 		return await this.runWith ('workspaces.packageUpgrade', ws, args);
+	}
+
+	async onDiscover (args, p) {
+		console.debug ('workspaces: onDiscover' + args + p);
+		return await this.runWith ('workspaces.create', null,
+				['-d', args.path, 'list']);
 	}
 
 	getRunningApplication (ws, a) {

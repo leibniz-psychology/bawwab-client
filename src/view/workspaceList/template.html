@@ -61,7 +61,7 @@
 		</td>
 		<td class="wl-table_applications">
 			<ul>
-				<li v-for="a in w.runnableApplications (username)" :key="a._id">
+				<li v-for="a in w.runnableApplications ()" :key="a._id">
 					<router-link :to="{name: 'application', params: {wsid: w.metadata._id, appid: a._id}}">
 						<application-icon :workspace="w" :application="a" height="1.5em"></application-icon>
 					</router-link>
@@ -70,15 +70,15 @@
 		</td>
 		<td class="wl-table_actions">
 			<ul class="wl-actionsList">
-				<li class="wl-actionItem" v-if="w.getPermissions (this.username)[0].canShare ()">
+				<li class="wl-actionItem">
 					<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
 					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.share') }}</span>
 				</li>
-				<li class="wl-actionItem" v-if="w.getPermissions (this.username)[0].canRead ()">
+				<li class="wl-actionItem" v-if="w.permissions.mine.canRead ()">
 					<action-button class="wl-actionItem_button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
 					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.copy') }}</span>
 				</li>
-				<li class="wl-actionItem" v-if="w.getPermissions (this.username)[0].canDelete ()">
+				<li class="wl-actionItem">
 					<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
 					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.delete') }}</span>
 				</li>
@@ -88,13 +88,13 @@
 					</template>
 					<template v-slot:default>
 						<ul>
-							<li v-if="w.getPermissions (this.username)[0].canShare ()"><router-link class="btn small" :to="{name: 'workspacePublish', params: {wsid: w.metadata._id}}">
+							<li v-if="w.permissions.mine.canWriteNamedAttributes ()"><router-link class="btn small" :to="{name: 'workspacePublish', params: {wsid: w.metadata._id}}">
 								<i class="fas fa-globe"></i> {{ $t('v.workspaceList.publish') }}
 							</router-link></li>
-							<li v-if="w.getPermissions (this.username)[0].canRead ()"><router-link class="btn small" :to="{name: 'workspaceExport', params: {wsid: w.metadata._id}}">
+							<li v-if="w.permissions.mine.canRead ()"><router-link class="btn small" :to="{name: 'workspaceExport', params: {wsid: w.metadata._id}}">
 								<i class="fas fa-file-export"></i> {{ $t('v.workspaceList.export') }}
 							</router-link></li>
-							<li v-if="w.getPermissions (this.username)[0].canRun ()"><router-link class="btn small" :to="{name: 'workspacePackages', params: {wsid: w.metadata._id}}">
+							<li v-if="w.permissions.mine.canRun ()"><router-link class="btn small" :to="{name: 'workspacePackages', params: {wsid: w.metadata._id}}">
 								<i class="fas fa-box"></i> {{ $t('v.workspaceList.manage') }}
 							</router-link></li>
 						</ul>

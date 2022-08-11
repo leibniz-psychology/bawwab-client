@@ -63,7 +63,7 @@
 
 		<div class="ws-applications">
 			<application-item
-				v-for="a in workspace.runnableApplications(username)"
+				v-for="a in workspace.runnableApplications()"
 				:application="a"
 				:workspace="workspace"
 				:key="a._id"></application-item>

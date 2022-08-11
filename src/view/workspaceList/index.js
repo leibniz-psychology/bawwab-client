@@ -21,9 +21,9 @@ export default {
 		username: function () { return this.state.user?.name; },
 		filteredWorkspaces: function () {
 			const filterFunc = {
-				mine: w => w.getPermissions (this.username)[0].canShare (),
-				shared: w => w.getPermissions (this.username)[1] == 'group',
-				world: w => w.getPermissions (this.username)[1] == 'other' || w.isPublic,
+				mine: w => w.permissions.mine.canShare (),
+				shared: w => !w.permissions.mine.canWriteNamedAttributes () && !w.isPublic,
+				world: w => w.isPublic,
 				};
 			const searchFunc = function (w) {
 				const s = this.filtertext;

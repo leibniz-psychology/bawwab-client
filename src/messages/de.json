@@ -41,6 +41,7 @@
       "headline": "Aktion ausführen",
       "pleasewait": "Einen Moment bitte…",
       "done": "Ausgeführt!",
+      "nows": "Projekt existiert nicht.",
       "expired": "Die Aktion ist nicht mehr gültig.",
       "not_found": "Die Aktion existiert nicht."
     },

@@ -42,6 +42,7 @@
             "headline": "Run action",
             "pleasewait": "Just a second…",
             "done": "Done!",
+            "nows": "Project does not exist.",
             "expired": "This action has expired.",
             "not_found": "The action does not exist."
         },

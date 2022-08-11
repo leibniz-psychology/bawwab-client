@@ -99,7 +99,9 @@ export default class BorgBackup {
 	async runWith (name, ws, operation, {archive=null, args=[], extraArgs={}}) {
 		let command = ['env', '-C', ws.path,
 				'BORG_RELOCATED_REPO_ACCESS_IS_OK=yes',
-				'BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes', 'borg', operation];
+				'BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes', 'borg',
+				'--umask=007',
+				operation];
 		if (ws) {
 			let path = '.backup';
 			if (archive) {

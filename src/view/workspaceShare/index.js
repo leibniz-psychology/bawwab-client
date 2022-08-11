@@ -3,6 +3,8 @@ import { postData } from '../../helper.js';
 import { queryParamProp } from '../../utils.js';
 import template from './template.html';
 import { trackEvent } from "../../matomo.js";
+import { get as pmget, run as pmrun } from '../../processManager';
+import { getResponse } from '../../helper';
 import './style.css';
 
 const SendStatus = Object.freeze ({
@@ -54,10 +56,67 @@ export default {
 		},
 	},
 	created: async function() {
+		const ws = this.workspace;
+
+		async function createAction (group) {
+			console.debug (`Creating action for group ${group}`);
+			/* {user} is a special symbol, which will be resolved upon evaluation of the action */
+			const command = ['usermgr', 'g', 'add', group, '{user}'];
+			const r = await postData('/api/action', {
+					name: 'run',
+					extra: {path: ws.path},
+					command: command,
+					/* 100 years (not kidding) */
+					validFor: 100*365*24*60*60,
+					/* yes, also not kidding */
+					usesRemaining: 10**10,
+					});
+			const action = await getResponse (r);
+			return action.token;
+		}
+
+		/* Do the groups exist? */
+		let groups = {false: null, true: null};
+
+		for (const g in ws.permissions.acl.group) {
+			const p = ws.permissions.acl.group[g];
+			if (p.canRead () && !p.canWrite ()) {
+				groups[false] = g;
+			} else if (p.canRead () && p.canWrite ()) {
+				groups[true] = g;
+			}
+		}
+
+		async function createGroupForWorkspace (ws, isWrite) {
+			console.debug (`Creating group for workspace ${ws} ${isWrite}`);
+			const token = 'usermgr-' + Date.now();
+			const name = ws.path.split ('/').pop ();
+			await pmrun (token, ['usermgr', 'g', 'create', name + (isWrite ? '-rw' : '-ro')], null, null);
+			const p = await pmget (token);
+			const ret = await p.wait ();
+			const data = await p.getObject ();
+			console.debug ('data is' + data + ' ret is ' + ret);
+			if (ret == 0 && data.status == 'ok') {
+				console.debug ('Group for' + ws + ' ' + isWrite + ' is ' + data);
+				return data.group;
+			} else {
+				throw Error (data.status);
+			}
+		}
+
+		if (groups[false] === null) {
+			groups[false] = await createGroupForWorkspace (ws, false);
+			await this.workspaces.share (ws, `g:${groups[false]}`, false);
+		}
+		if (groups[true] === null) {
+			groups[true] = await createGroupForWorkspace (ws, true);
+			await this.workspaces.share (ws, `g:${groups[true]}`, true);
+		}
+
 		/* async resolve both actions */
 		const keys = [false, true];
 		const values = await Promise.all (keys.map (function (isWrite) {
-			return this.workspaces.shareAction (this.workspace, isWrite);
+			return createAction (groups[isWrite]);
 		}.bind (this)));
 		for (let i = 0; i < keys.length; i++) {
 			const isWrite = keys[i];

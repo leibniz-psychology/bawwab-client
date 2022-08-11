@@ -48,7 +48,7 @@ export default {
 		},
 		isOwnWorkspace: function () { return this.workspace.owner().includes(this.username) },
 		permissions: function () {
-			return this.workspace?.getPermissions (this.username)[0];
+			return this.workspace?.permissions?.mine;
 		},
 		name: function () { return this.workspace.metadata.name },
 		hasName: function () { return this.editable || this.workspace.metadata.name },

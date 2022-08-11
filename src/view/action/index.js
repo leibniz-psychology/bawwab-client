@@ -24,13 +24,18 @@ export default {
 	 		switch (a.name) {
 				case 'run': {
 					console.debug ('got run action');
-					const newws = await emrun ('workspaces.joinShared', null, null, this.token);
-					this.message = 'v.action.done';
-					await this.$router.push ({name: 'workspace', params: {wsid: newws.metadata._id}});
+					const newws = await emrun ('workspaces.discover', a.extra, null, this.token);
+					if (newws === null) {
+						/* Can be a permission error or the workspace does not exist any more. */
+						this.message = 'v.action.nows';
+					} else {
+						this.message = 'v.action.done';
+						await this.$router.push ({name: 'workspace', params: {wsid: newws.metadata._id}});
+					}
 	 				break;
 	 			}
 	 		}
-	    } catch (e) {
+		} catch (e) {
 			console.error ('failed: %o', e);
 			if (e.message == 'unauthenticated') {
 				const url = new URL ('/api/session/login', window.location.href);
@@ -42,9 +47,9 @@ export default {
 			} else {
 				this.message = 'v.action.' + e.message;
 			}
-	    } finally {
-	 	   this.running = false;
-	    }
+		} finally {
+			this.running = false;
+		}
 	},
 };
 

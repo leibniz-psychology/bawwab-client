@@ -6,11 +6,16 @@ export default class Workspace {
 	constructor (o) {
 		Object.assign (this, o);
 
-		for (const cat of ['user', 'group']) {
-			for (const id in this.permissions[cat]) {
-				this.permissions[cat][id] = new Permissions (this.permissions[cat][id]);
+		function convertPermissions (o) {
+			for (const id in o) {
+				o[id] = new Permissions (o[id]);
 			}
 		}
+		convertPermissions (this.permissions.user);
+		convertPermissions (this.permissions.group);
+		convertPermissions (this.permissions.acl.user);
+		convertPermissions (this.permissions.acl.group);
+		this.permissions.mine = new Permissions (this.permissions.mine);
 		this.permissions.other = new Permissions (this.permissions.other);
 	}
 
@@ -26,22 +31,6 @@ export default class Workspace {
 		} else {
 			return -1;
 		}
-	}
-
-	/* Return [permissions, source] for user */
-	getPermissions (user) {
-		/* first check user fields */
-		let perms = Object.entries (this.permissions.user).filter (([k, v]) => k == user);
-		if (perms.length >= 1) {
-			return [perms[0][1], 'user'];
-		}
-		/* assuming user==group */
-		perms = Object.entries (this.permissions.group).filter (([k, v]) => k == user);
-		if (perms.length >= 1) {
-			return [perms[0][1], 'group'];
-		}
-		/* this should always exist */
-		return [this.permissions.other, 'other'];
 	}
 
 	get isPublic () {
@@ -60,9 +49,9 @@ export default class Workspace {
 
 	/* All applications runnable in the web client
 	 */
-	runnableApplications (user) {
+	runnableApplications () {
 		const ret = [];
-		if (!this.getPermissions (user)[0].canRun ()) {
+		if (!this.permissions.mine.canRun ()) {
 			return ret;
 		}
 		for (const a of this.applications) {

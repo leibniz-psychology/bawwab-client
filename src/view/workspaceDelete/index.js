@@ -15,7 +15,7 @@ export default {
 			return this.workspaces ? this.workspaces.getById (this.wsid) : null;
 		},
 		permissions: function () {
-			return this.workspace?.getPermissions (this.state.user?.name)[0];
+			return this.workspace?.permissions.mine;
 		},
 		canDelete: function () {
 			return this.permissions?.canDelete () ?? false;
