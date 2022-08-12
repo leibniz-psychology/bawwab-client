@@ -138,12 +138,14 @@ export async function receive (token) {
 
 /* Run an application and on success return a token.
  */
-export async function run (token, command=null, action=null, extraData=null) {
+export async function run (token, command=null, action=null, extraData=null, options={}) {
 	/* We cannot start processes if not connected, otherwise we’re going to
 	 * miss their notifications. Wait until ready. */
 	await ready.wait ();
 
-	const payload = {extraData: extraData, token};
+	const payload = {extraData: extraData,
+			token,
+			useNewConnection: options.useNewConnection ?? false};
 	if (command && action) {
 		console.debug ('both command and action given', command, action);
 		throw Error ('bug');

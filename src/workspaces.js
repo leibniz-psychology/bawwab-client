@@ -45,7 +45,7 @@ export default class Workspaces {
 
 	/* Run workspace command with more arguments
 	 */
-	async runWith (name, ws, args, extraArgs=null) {
+	async runWith (name, ws, args, extraArgs=null, options={}) {
 		let command = ['workspace', '-f', 'json'];
 		if (ws) {
 			command = command.concat (['-d', ws.path]);
@@ -60,7 +60,7 @@ export default class Workspaces {
 				extraArgs.path = ws.path;
 			}
 		}
-		return await emrun (name, extraArgs, command);
+		return await emrun (name, extraArgs, command, null, options);
 	}
 
 	async onRunWith (p) {
@@ -238,8 +238,13 @@ export default class Workspaces {
 
 	async onDiscover (args, p) {
 		console.debug ('workspaces: onDiscover' + args + p);
-		return await this.runWith ('workspaces.create', null,
-				['-d', args.path, 'list']);
+		const ret = await p.wait ();
+		if (ret == 0) {
+			return await this.runWith ('workspaces.create', null,
+					['-d', args.path, 'list'], null, {useNewConnection: true});
+		} else {
+			throw Error ('add failed');
+		}
 	}
 
 	getRunningApplication (ws, a) {

@@ -107,15 +107,15 @@ export async function setAllowedHandler (re) {
 	deferred = newDeferred;
 }
 
-export async function run (name, args=null, command=null, action=null) {
-	console.debug ('em running', name, args, command, action);
+export async function run (name, args=null, command=null, action=null, options={}) {
+	console.debug ('em running', name, args, command, action, options);
 
 	const token = tokenPrefix + '-' + tokenId;
 	tokenId++;
 	const n = new AsyncNotify ();
 	waiting.set (token, n);
 
-	await pmrun (token, command, action, {trigger: name, args: args});
+	await pmrun (token, command, action, {trigger: name, args: args}, options);
 
 	const ret = await n.wait ();
 	waiting.delete (token);
