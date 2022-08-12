@@ -13,11 +13,8 @@ export default class User {
 		return new User (j.name, j.motd, j.loginStatus);
 	}
 
-	static async get (acceptTos) {
+	static async get () {
 		let url = '/api/user';
-		if (acceptTos) {
-			url += '?acceptTos=1';
-		}
 		const r = await fetch (url);
 		const j = await r.json ();
 		if (r.ok) {
@@ -38,6 +35,19 @@ export default class User {
 		const j = await r.json ();
 		if (r.ok) {
 			return User.fromJson (j);
+		} else {
+			throw Error (j.status);
+		}
+	}
+
+	async acceptTos () {
+		const r = await postData ('/api/user/acceptTos');
+		const j = await r.json ();
+		if (r.ok) {
+			this.name = j.name;
+			this.motd = j.motd;
+			this.loginStatus = j.loginStatus;
+			return true;
 		} else {
 			throw Error (j.status);
 		}

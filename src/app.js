@@ -82,7 +82,10 @@ export const store = {
 
 	async initUser (acceptTos) {
 		try {
-			this.state.user = await User.get (acceptTos);
+			this.state.user = await User.get ();
+			if (acceptTos && this.state.user.loginStatus == 'termsOfService') {
+				await this.state.user.acceptTos ();
+			}
 		} catch (e) {
 			if (e.message == 'nonexistent' && this.state.session.authenticated()) {
 				try {
