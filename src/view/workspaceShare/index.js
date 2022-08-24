@@ -3,8 +3,8 @@ import { postData } from '../../helper.js';
 import { queryParamProp } from '../../utils.js';
 import template from './template.html';
 import { trackEvent } from "../../matomo.js";
-import { get as pmget, run as pmrun } from '../../processManager';
 import { getResponse } from '../../helper';
+import { groupCreate } from '../../usermgr';
 import './style.css';
 
 const SendStatus = Object.freeze ({
@@ -89,27 +89,18 @@ export default {
 
 		async function createGroupForWorkspace (ws, isWrite) {
 			console.debug (`Creating group for workspace ${ws} ${isWrite}`);
-			const token = 'usermgr-' + Date.now();
-			const name = ws.path.split ('/').pop ();
-			await pmrun (token, ['usermgr', 'g', 'create', name + (isWrite ? '-rw' : '-ro')], null, null);
-			const p = await pmget (token);
-			const ret = await p.wait ();
-			const data = await p.getObject ();
-			console.debug ('data is' + data + ' ret is ' + ret);
-			if (ret == 0 && data.status == 'ok') {
-				console.debug ('Group for' + ws + ' ' + isWrite + ' is ' + data);
-				return data.group;
-			} else {
-				throw Error (data.status);
-			}
+			const name = ws.path.split ('/').pop () + (isWrite ? '-rw' : '-ro');
+			return await groupCreate (name);
 		}
 
 		if (groups[false] === null) {
-			groups[false] = await createGroupForWorkspace (ws, false);
+			const newgroup = await createGroupForWorkspace (ws, false);
+			groups[false] = newgroup.group;
 			await this.workspaces.share (ws, `g:${groups[false]}`, false);
 		}
 		if (groups[true] === null) {
-			groups[true] = await createGroupForWorkspace (ws, true);
+			const newgroup = await createGroupForWorkspace (ws, true);
+			groups[true] = newgroup.group;
 			await this.workspaces.share (ws, `g:${groups[true]}`, true);
 		}
 
