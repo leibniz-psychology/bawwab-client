@@ -37,6 +37,12 @@ export default class Workspace {
 		return this.permissions.other.canRead ();
 	}
 
+	/* Return true if the project is shared with others */
+	get isShared () {
+		return Object.keys (this.permissions.acl.group).length > 0 ||
+				Object.keys (this.permissions.acl.user).length > 0;
+	}
+
 	get id () {
 		return this.metadata._id;
 	}
@@ -44,7 +50,7 @@ export default class Workspace {
 	/* Retrive the owners of this workspace.
 	 */
 	owner () {
-		return Object.entries (this.permissions.user).filter (([k, v]) => v.canShare ()).map (([k, v]) => k);
+		return Object.keys (this.permissions.user);
 	}
 
 	/* All applications runnable in the web client

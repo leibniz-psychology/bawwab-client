@@ -22,15 +22,9 @@
 					{{ o }}
 				</span>
 			</li>
-			<li v-if="sharedWith.length > 0" class="ws-workspace_shared">
+			<li v-if="workspace.isShared" class="ws-workspace_shared">
 				<i class="fa fa-users"></i>
-				{{ $t('v.workspaceShow.sharedwith') }}
-				<ul>
-					<li v-for="[k, v] of sharedWith">
-					{{ k }} ({{ permissionsToHuman (v) }})
-					<action-button v-if="permissions.canShare()" icon="trash" :f="_ => deleteShare (k)" importance="small"></action-button>
-					</li>
-				</ul>
+				{{ $t('v.workspaceShow.isShared') }}
 			</li>
 
 			<li v-if="workspace.isPublic" class="public">

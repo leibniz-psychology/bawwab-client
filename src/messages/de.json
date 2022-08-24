@@ -204,7 +204,7 @@
       "hide": "Verbergen",
       "back": "Zurück zur Übersicht",
       "projectname": "Name des Projekts",
-      "sharedwith": "Geteilt mit Gruppen",
+      "isShared": "Geteiltes Projekt",
       "publicproject": "Öffentliches Projekt",
       "ownedby": "Gehört",
       "projectdescription": "Beschreibung des Projekts",

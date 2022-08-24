@@ -56,8 +56,6 @@ export default {
 		hasDescription: function () { return this.editable || this.workspace.metadata.description },
 		/* owners without us */
 		owners: function () { return this.workspace.owner ().filter (name => name != this.username); },
-		/* XXX: this is accidentally quadratic, assuming username==groupname */
-		sharedWith: function () { return Object.entries (this.workspace.permissions.group).filter (([k, v]) => this.owners.indexOf (k) == -1 && k != this.username) },
 		/* user can edit project metadata */
 		canEditMeta: function () { return this.permissions.canWrite (); },
 		isReadOnlyWorkspace: function () { return !this.permissions.canWrite(); },
@@ -105,16 +103,6 @@ export default {
 		},
 		discard: async function () {
 			this.editable = false;
-		},
-		permissionsToHuman: function (p) {
-			const canRead = p.canRead ();
-			const canWrite = p.canWrite ();
-			if (canRead && canWrite) {
-				return this.$t('v.workspaceShow.readwrite');
-			} else if (canRead) {
-				return this.$t('v.workspaceShow.readonly');
-			}
-			return this.$t('v.workspaceShow.noaccess');
 		},
 	}
 };
