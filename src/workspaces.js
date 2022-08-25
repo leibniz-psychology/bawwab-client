@@ -73,14 +73,14 @@ export default class Workspaces {
 		}
 	}
 
-	async fetch () {
+	async fetch (options) {
 		try {
 			this.loading = true;
 			return await this.runWith ('workspaces.fetch', null, [
 					'list',
 					'-s', publicData,
 					'-s', privateData,
-					]);
+					], null, options);
 		} catch (e) {
 			this.workspaces.clear ();
 			throw e;

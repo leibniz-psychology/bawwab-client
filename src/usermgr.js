@@ -1,5 +1,11 @@
 import { get as pmget, run as pmrun } from './processManager';
 
+export class UsermgrError extends Error {
+}
+
+export class UsermgrNotAMember extends UsermgrError {
+}
+
 export async function groupCreate (name) {
 	const token = 'usermgr-' + Date.now();
 	await pmrun (token, ['usermgr', 'g', 'create', name], null, null);
@@ -10,7 +16,7 @@ export async function groupCreate (name) {
 	if (ret == 0 && data.status == 'ok') {
 		return data;
 	} else {
-		throw Error (data.status);
+		throw new UsermgrError (data.status);
 	}
 }
 
@@ -22,9 +28,13 @@ export async function groupDelete (name) {
 	const data = await p.getObject ();
 	console.debug ('data is' + data + ' ret is ' + ret);
 	if (ret == 0 && data.status == 'ok') {
-		return True;
+		return true;
 	} else {
-		throw Error (data.status);
+		if (data.status === 'not_a_member') {
+			throw new UsermgrNotAMember ();
+		} else {
+			throw new UsermgrError (data.status);
+		}
 	}
 }
 

@@ -43,6 +43,10 @@ export default class Workspace {
 				Object.keys (this.permissions.acl.user).length > 0;
 	}
 
+	get sharedGroups () {
+		return Object.keys (this.permissions.acl.group);
+	}
+
 	get id () {
 		return this.metadata._id;
 	}
