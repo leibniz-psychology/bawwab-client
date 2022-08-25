@@ -229,7 +229,22 @@ export default class BorgBackup {
 	}
 
 	async onExtract (extraArgs, p) {
-		const ret = await p.wait ();
+		let ret = await p.wait ();
+
+		/* This is a terrible workaround for borg not being able to restore
+		 * attributes. This happens alot on shared projects, but has no impact on
+		 * the project itself. */
+		if (ret != 0) {
+			/* We simply filter out the known attribute error and see if any other
+			 * errors are left */
+			const stderrFiltered = p.stderrBuf.split ('\n').filter (l => !l.includes ('attrs: [Errno 1] Operation not permitted:') && l.length != 0);
+			if (stderrFiltered.length == 0) {
+				ret = 0;
+			} else {
+				console.debug ('borg: onExtract: Messages left:', stderrFiltered);
+			}
+		}
+
 		switch (ret) {
 			case 0:
 				return true;
@@ -240,7 +255,9 @@ export default class BorgBackup {
 	}
 
 	async extract (ws, archive) {
-		return await this.runWith ('borg.extract', ws, 'extract', {archive: archive.name});
+		return await this.runWith ('borg.extract', ws, 'extract',
+				{args: ['--noflags', '--noacls', '--noxattrs'],
+				archive: archive.name});
 	}
 
 	async onRename (extraArgs, p) {
