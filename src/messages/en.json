@@ -202,7 +202,7 @@
             "hide": "Hide",
             "back": "Back to projects",
             "projectname": "Name of the project",
-            "isShared": "Shared project",
+            "sharedwith": "Shared with",
             "publicproject": "Public project",
             "ownedby": "Owned by",
             "projectdescription": "Description of the project",

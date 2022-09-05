@@ -57,7 +57,7 @@
 			</router-link>
 		</td>
 		<td class="wl-table_publishedBy" v-if="filter==='world' || filter==='shared'">
-			<span>{{ w.owner().join(", ") }}</span>
+			<span>{{ w.ownerUsers.map (u => u.nick).join(", ") }}</span>
 		</td>
 		<td class="wl-table_applications">
 			<ul>

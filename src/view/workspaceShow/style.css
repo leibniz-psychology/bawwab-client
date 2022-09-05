@@ -22,6 +22,14 @@
     display: inline;
 }
 
+.ws-workspace_shared li::after, .ws-workspace_owners li::after {
+    content: ", ";
+}
+
+.ws-workspace_shared li:last-child::after, .ws-workspace_owners li:last-child::after {
+    content: "";
+}
+
 .ws-workspace_metadata {
     font-size: 0.9em;
     list-style-type: none;

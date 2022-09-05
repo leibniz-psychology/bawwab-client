@@ -1,4 +1,5 @@
 import Permissions from './permissions.js';
+import UnixUser from './unixuser.js';
 
 /* A single workspace.
  */
@@ -17,6 +18,13 @@ export default class Workspace {
 		convertPermissions (this.permissions.acl.group);
 		this.permissions.mine = new Permissions (this.permissions.mine);
 		this.permissions.other = new Permissions (this.permissions.other);
+
+		let newusers = new Map ();
+		for (const u of Object.values (this.users)) {
+			const newu = UnixUser.fromObject (u);
+			newusers.set (newu.name, newu);
+		}
+		this.users = newusers;
 	}
 
 	/* Compare workspace names for .sort()
@@ -47,6 +55,19 @@ export default class Workspace {
 		return Object.keys (this.permissions.acl.group);
 	}
 
+	get sharedUsers () {
+		let users = new Set ();
+		for (let g of this.sharedGroups) {
+			for (let name of this.groups[g].members) {
+				const u = this.users.get (name);
+				if (u !== undefined) {
+					users.add (u);
+				}
+			}
+		}
+		return users;
+	}
+
 	get id () {
 		return this.metadata._id;
 	}
@@ -55,6 +76,17 @@ export default class Workspace {
 	 */
 	owner () {
 		return Object.keys (this.permissions.user);
+	}
+
+	get ownerUsers () {
+		let users = [];
+		for (let name of this.owner ()) {
+			const u = this.users.get (name);
+			if (u !== undefined) {
+				users.push (u);
+			}
+		}
+		return users;
 	}
 
 	/* All applications runnable in the web client

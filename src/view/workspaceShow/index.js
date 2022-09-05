@@ -55,11 +55,11 @@ export default {
 		description: function () { return this.workspace.metadata.description },
 		hasDescription: function () { return this.editable || this.workspace.metadata.description },
 		/* owners without us */
-		owners: function () { return this.workspace.owner ().filter (name => name != this.username); },
+		owners: function () { return this.workspace.ownerUsers.filter (u => u.name != this.username); },
 		/* user can edit project metadata */
 		canEditMeta: function () { return this.permissions.canWrite (); },
 		isReadOnlyWorkspace: function () { return !this.permissions.canWrite(); },
-		workspaceAlreadyVisitedKey: function () { return `alreadyVisited${this.workspace.metadata._id}`; }
+		workspaceAlreadyVisitedKey: function () { return `alreadyVisited${this.workspace.metadata._id}`; },
 	},
 	methods: {
 		setWorkspaceVisited: async function () {

@@ -18,13 +18,16 @@
 			<li class="ws-workspace_owners" v-if="owners.length > 0">
 				<i class="fa fa-user"></i>
 				{{ $t('v.workspaceShow.ownedby') }}
-				<span v-for="o of owners">
-					{{ o }}
-				</span>
+				<ul>
+					<li v-for="o of owners">{{ o.nick }}</li>
+				</ul>
 			</li>
 			<li v-if="workspace.isShared" class="ws-workspace_shared">
 				<i class="fa fa-users"></i>
-				{{ $t('v.workspaceShow.isShared') }}
+				{{ $t('v.workspaceShow.sharedwith') }}
+				<ul>
+					<li v-for="u of workspace.sharedUsers">{{ u.nick }}</li>
+				</ul>
 			</li>
 
 			<li v-if="workspace.isPublic" class="public">
