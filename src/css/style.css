@@ -308,11 +308,11 @@ table.pure-table {
 	transition-duration: 0.4s;
 }
 
-.btn:disabled:hover {
+.btn:disabled:hover, .btn.disabled:hover {
 	color: inherit;
 }
 
-.btn:disabled, .btn.high:disabled {
+.btn:disabled, .btn.disabled, .btn.high:disabled, .btn.high.disabled {
 	background-color: var(--gray-base);
 	cursor: not-allowed;
 }
@@ -325,7 +325,7 @@ table.pure-table {
 .btn.high:hover {
 	background-color: #443787;
 }
-.btn.high:disabled:hover {
+.btn.high:disabled:hover, .btn.high.disabled:hover {
 	background-color: var(--gray-base);
 }
 

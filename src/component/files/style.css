@@ -1,0 +1,58 @@
+.fi-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.fi-list {
+}
+
+.fi-check {
+    text-align: center;
+}
+
+.fi-size {
+    text-align: right;
+    font-feature-settings: "tnum";
+    padding-right: 0 !important;
+}
+
+.fi-unit {
+    padding-left: 0 !important;
+}
+
+.fi-name {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden !important;
+    max-width: 0;
+}
+
+.fi-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: space-evenly;
+}
+
+.fi-actions_folderName {
+    width: 100%;
+}
+
+.fi-files {
+    overflow-y: auto;
+    /* Any height is fine, since it’ll be grown via the flex container */
+    height: 1em;
+    flex-grow: 1;
+    margin-top: 1em;
+}
+
+.fi-container table {
+    border-collapse: collapse;
+}
+
+.fi-container td {
+    padding: 0.5em;
+}
+

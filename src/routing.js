@@ -3,6 +3,7 @@ const AccountView = () => import ('./view/account');
 const ActionView = () => import ('./view/action');
 const ApplicationView = () => import ('./view/application');
 const FaqView = () => import('./view/faq');
+const FileManager = () => import('./view/filemanager/');
 const IndexView = () => import ('./view/index');
 const LoginView = () => import ('./view/login');
 const LogoutView = () => import ('./view/logout');
@@ -32,7 +33,7 @@ const routes = [
 	{ path: '/workspaces/:wsid/export', components: { default: WorkspaceShowView, overlay: WorkspaceExportView}, name: 'workspaceExport', props: { default: true, overlay: true }, meta: { requireAuth: true } },
 	{ path: '/workspaces/:wsid/packages', components: { default: WorkspaceShowView, overlay: WorkspacePackagesView}, name: 'workspacePackages', props: { default: true, overlay: true }, meta: { requireAuth: true } },
 	{ path: '/workspaces/:wsid/security-prompt', components: { default: WorkspaceShowView, overlay: WorkspaceSecurityPromptView }, name: 'workspaceSecurityPrompt', props: { default: true, overlay: true }, meta: { requireAuth: true } },
-	{ path: '/workspaces/:wsid/:appid/:appPath*',
+	{ path: '/workspaces/:wsid/:appid([a-z0-9.]+\.desktop)/:appPath*',
 		components: { default: WorkspaceShowView, overlay: ApplicationView },
 		name: 'application',
 		props: { default: true, overlay: function (route) {
@@ -45,6 +46,12 @@ const routes = [
 		}},
 		meta: { requireAuth: true } ,
 		},
+	{ path: '/workspaces/:wsidA/files:pathA([^;]*)?;:wsidB?/files:pathB([^;]*)?',
+		components: { default: WorkspaceShowView, overlay: FileManager },
+		name: 'fileManager',
+		props: { default: route => ({ wsid: route.params.wsidA }), overlay: true },
+		meta: { requireAuth: true },
+	},
 	{ path: '/terms', component: TermsOfServiceView, name: 'terms', props: { kind: 'tos' } },
 	{ path: '/terms/prompt', components: { default: TermsOfServiceView, overlay: TermsOfServicePromptView }, name: 'termsPrompt', props: { default: { kind: 'tos' }, overlay: (route) => ({ next: route.query.next })} },
 	{ path: '/privacy', component: TermsOfServiceView, name: 'privacy', props: { kind: 'privacy' } },

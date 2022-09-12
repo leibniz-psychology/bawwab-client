@@ -69,6 +69,7 @@
       "publish": "Veröffentlichen",
       "export": "Exportieren",
       "manage": "Pakete verwalten",
+      "files": "Dateien verwalten",
       "unnamed": "Unbenanntes Projekt",
       "myprojects": "Meine Projekte",
       "sharedprojects": "Geteilte Projekte",
@@ -213,12 +214,24 @@
       "noaccess": "kein Zugriff",
       "noTitle": "Klicken, um einen Titel hinzuzufügen",
       "noDescription": "Klicken, um eine Beschreibung hinzuzufügen.",
-      "editpackages": "Pakete verwalten"
+      "editpackages": "Pakete verwalten",
+      "files": "Dateien verwalten"
     },
     "logout": {
       "logout": "Abmelden",
       "done": "Du wurdest von PsychNotebook abgemeldet.",
       "ssologout": "Vom Single-Sign-On abmelden"
+    },
+    "filemanager": {
+        "none": "(Ziel verstecken)",
+        "title": "Dateien",
+        "close": "Schließen",
+        "source": "Quelle",
+        "target": "Ziel",
+        "copy": "Kopieren",
+        "move": "Verschieben",
+        "swap": "Tauschen",
+        "expand": "Dateien kopieren oder verschieben"
     }
   },
   "c": {
@@ -266,6 +279,10 @@
       "software": "Software",
       "imprint": "Datenschutzhinweise",
       "leibnizLogo": "https://www.lifp.de/assets/images/Leibniz-Gemeinschaft_Logo.svg"
+    },
+    "files": {
+        "newNamePlaceholder": "Neuer Ordnername",
+        "notfound": "Ordner existiert nicht."
     }
   }
 }

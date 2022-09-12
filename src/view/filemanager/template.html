@@ -1,0 +1,49 @@
+<modal :title="$t('v.filemanager.title')" icon="file" :closeName="$t('v.filemanager.close')" :closeLink="{name: 'workspace', params: {wsid: workspaceA.metadata._id}}" :scaling="false">
+	<div class="fm-container">
+		<div class="fm-A">
+			<h3>{{ $t(enableSelectA ? 'v.filemanager.source' : 'v.filemanager.target') }}</h3>
+			<div class="fm-path">
+				<select v-model="wsidA" disabled>
+					<option value="">{{ $t('v.filemanager.none') }}</option>
+					<option v-for="w of workspaces.all()" :value="w.metadata._id">{{ w.metadata.name }}</option>
+				</select>
+				<a v-if="!wsidB" @click="addTarget" class="btn">{{ $t('v.filemanager.expand') }}</a>
+			</div>
+
+			<files :root="workspaceA.path" :path="pathA" :canMkdir="canWriteA" :canUpload="canWriteA" :canDownload="canWriteA" :canDelete="canWriteA" :canSelect="enableSelectA" :onChangeDir="changeDirA" :onSelected="onSelectedA" ref="filesA"></files>
+		</div>
+		<div class="fm-actions" v-if="wsidB">
+			<!-- The swap button should be between source/target heading, not in
+			the center. So it’s not part of the flexbox below -->
+			<tooltip>
+				<action-button icon="arrows-alt-h" :f="swap" :disable:="!wsidB"></action-button>
+				<template v-slot:tip>{{ $t('v.filemanager.swap') }}</template>
+			</tooltip>
+			<ul>
+				<li>
+					<tooltip>
+						<action-button icon="copy" :f="copyFiles" :disabled="selected.length == 0 || !canWriteB"></action-button>
+						<template v-slot:tip>{{ $t('v.filemanager.copy') }}</template>
+					</tooltip>
+				</li>
+				<li>
+					<tooltip>
+						<action-button icon="cut" :f="moveFiles" :disabled="selected.length == 0 || !canWriteA || !canWriteB"></action-button>
+						<template v-slot:tip>{{ $t('v.filemanager.move') }}</template>
+					</tooltip>
+				</li>
+			</ul>
+		</div>
+		<div class="fm-B" v-if="wsidB">
+			<h3>{{ $t(enableSelectB ? 'v.filemanager.source' : 'v.filemanager.target') }}</h3>
+			<div class="fm-path">
+				<select v-model="newWsidB">
+					<option value="">{{ $t('v.filemanager.none') }}</option>
+					<option v-for="w of workspaces.all()" :value="w.metadata._id">{{ w.metadata.name }}</option>
+				</select>
+			</div>
+
+			<files v-if="workspaceB" :root="workspaceB.path" :path="pathB" :canMkdir="canWriteB" :canUpload="false" :canDownload="false" :canDelete="false" :canSelect="enableSelectB" :onChangeDir="changeDirB" :onSelected="onSelectedB" ref="filesB"></files>
+		</div>
+	</div>
+</modal>

@@ -1,0 +1,73 @@
+<div class="fi-container">
+	<div class="fi-actions">
+		<a v-if="canMkdir" @click="prepareMkdir" class="btn low"><i class="fa fa-folder-plus"></i></a>
+		<action-button v-if="canUpload" icon="upload" :f="uploadSelect"></action-button>
+		<input type="file" ref="upload" @change="upload" style="display: none" multiple>
+		<a v-if="canDownload" :href="downloadUrl" :class="'btn low' + (downloadUrl === null ? ' disabled' : '')"><i class="fa fa-download"></i></a>
+		<action-button v-if="canDelete" icon="trash" :f="deleteFiles" :disabled="selected.length == 0"></action-button>
+	</div>
+
+	<div class="fi-files">
+	<table class="fi-list pure-table pure-table-striped pure-table-horizontal">
+		<tr>
+			<td class="fi-check">
+				<a :class="'btn low' + (updating ? ' disabled' : '')" @click="changeDir(parent)"><i class="fa fa-arrow-up"></i></a>
+			</td>
+			<td><i class="fa fa-folder-open"></i></td>
+			<td class="fi-name">
+				{{ path }}
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr v-if="showMkdir">
+			<td class="fi-check"></td>
+			<td><i class="fa fa-folder-open"></i></td>
+			<td class="fi-name" colspan="2">
+				<input class="fi-actions_folderName" type="text" :placeholder="$t('c.files.newNamePlaceholder')" v-model="newName" size="1" ref="newName" @keyup.enter="onNewNameSubmit">
+			</td>
+			<td>
+				<action-button icon="folder-plus" :f="makeDir" :disabled="newName.length == 0" ref="newNameSubmit"></action-button>
+			</td>
+		</tr>
+		<tr v-if="updating">
+			<td class="fi-check">
+			</td>
+			<td><spinner></spinner></td>
+			<td class="fi-name">
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr v-else-if="notFound">
+			<td class="fi-check">
+			</td>
+			<td><i class="fa fa-exclamation-triangle"></i></td>
+			<td class="fi-name">
+				{{ $t('c.files.notfound') }}
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr v-else v-for="f of viewFiles">
+			<td class="fi-check">
+				<spinner v-if="f.inProgress"></spinner>
+				<input v-else-if="canSelect" type="checkbox" :id="fullPath + f.name" v-model="selected" :value="fullPath + '/' + f.name">
+			</td>
+			<td><i :class="'fa ' + fileToIcon(f)"></i></td>
+			<td class="fi-name">
+				<a v-if="isFolder(f)" class="fi-name_overflow" @click="_ => changeDir(path + f.name + '/')">{{ f.name }}</a>
+				<label v-else class="fi-name_overflow" :for="fullPath + f.name">{{ f.name }}</label>
+			</td>
+			<template v-if="isFile(f)">
+				<td class="fi-size">{{ sizeToHuman (f.size)[0] }}</td>
+				<td class="fi-unit">&nbsp;{{ sizeToHuman (f.size)[1] }}</td>
+			</template>
+			<template v-else>
+				<td></td>
+				<td></td>
+			</template>
+		</tr>
+	</table>
+	</div>
+</div>
