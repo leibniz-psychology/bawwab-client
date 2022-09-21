@@ -4,6 +4,7 @@ import Workspace from '../../workspace.js';
 import { copy } from "../../workspaceUtil";
 import template from './template.html';
 import { trackEvent } from "../../matomo.js";
+import TooltipComponent from "../../component/tooltip";
 import './style.css';
 
 export default {
@@ -13,6 +14,9 @@ export default {
 		state: store.state,
 		name: '',
 		}),
+	components: {
+		tooltip: TooltipComponent,
+	},
 	mounted: function () {
 	},
 	computed: {

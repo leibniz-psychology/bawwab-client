@@ -71,16 +71,22 @@
 		<td class="wl-table_actions">
 			<ul class="wl-actionsList">
 				<li class="wl-actionItem">
-					<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
-					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.share') }}</span>
+					<tooltip>
+						<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
+						<template v-slot:tip>{{ $t('v.workspaceList.share') }}</template>
+					</tooltip>
 				</li>
 				<li class="wl-actionItem" v-if="w.permissions.mine.canRead ()">
-					<action-button class="wl-actionItem_button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
-					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.copy') }}</span>
+					<tooltip>
+						<action-button class="wl-actionItem_button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
+						<template v-slot:tip>{{ $t('v.workspaceList.copy') }}</template>
+					</tooltip>
 				</li>
 				<li class="wl-actionItem">
-					<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
-					<span class="wl-actionItem_tooltip">{{ $t('v.workspaceList.delete') }}</span>
+					<tooltip>
+						<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
+						<template v-slot:tip>{{ $t('v.workspaceList.delete') }}</template>
+					</tooltip>
 				</li>
 				<li class="wl-actionItem"><dropdown>
 					<template v-slot:button>

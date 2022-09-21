@@ -1,0 +1,19 @@
+.tt-tooltip {
+    display: none;
+}
+
+.tt-content:hover + .tt-tooltip {
+    display: block;
+}
+
+.tt-tooltip {
+    padding: 0.3em;
+    pointer-events: none;
+    box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
+    border: 0.1em solid #352071;
+    text-align: left;
+    background-color: white;
+    position: absolute;
+    z-index: 1000;
+}
+
