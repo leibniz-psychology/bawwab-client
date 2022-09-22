@@ -57,8 +57,13 @@ export default class Workspace {
 
 	get sharedUsers () {
 		let users = new Set ();
-		for (let g of this.sharedGroups) {
-			for (let name of this.groups[g].members) {
+		for (let name of this.sharedGroups) {
+			const group = this.groups[name];
+			/* We don’t have any information about this group */
+			if (group === undefined) {
+				continue;
+			}
+			for (let name of group.members) {
 				const u = this.users.get (name);
 				if (u !== undefined) {
 					users.add (u);
