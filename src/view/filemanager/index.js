@@ -36,8 +36,8 @@ export default {
 		selected: function () {
 			return [].concat (this.selectedA).concat (this.selectedB);
 		},
-		canWriteA: function () { return this.workspaceA.permissions.mine.canWrite (); },
-		canWriteB: function () { return this.workspaceB.permissions.mine.canWrite (); },
+		canWriteA: function () { return this.workspaceA.permissions.mine.canWrite; },
+		canWriteB: function () { return this.workspaceB.permissions.mine.canWrite; },
 	},
     methods: {
 		copyFiles: async function () {

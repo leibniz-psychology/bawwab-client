@@ -5,37 +5,37 @@ export default class Permissions {
 
 	/* Current user is allowed to read files of this project.
 	 */
-	canRead () {
+	get canRead () {
 		return this.s.includes ('r');
 	}
 
 	/* Current user is allowed to write files of this project.
 	 */
-	canWrite () {
+	get canWrite () {
 		return this.s.includes ('w');
 	}
 
 	/* Current user can run applications.
 	 */
-	canRun () {
-		return this.canWrite ();
+	get canRun () {
+		return this.canWrite;
 	}
 
 	/* Usually only the owner can
 	 */
-	canWriteNamedAttributes () {
+	get canWriteNamedAttributes () {
 		return this.s.includes ('T');
 	}
 
 	/* Current user can share project with other users.
 	 */
-	canShare () {
-		return this.canWriteNamedAttributes ();
+	get canShare () {
+		return this.canWriteNamedAttributes;
 	}
 
 	/* Current user can delete files. In theory having 'w' is enough, but don’t
 	 * advertise it. */
-	canDelete () {
-		return this.canShare ();
+	get canDelete () {
+		return this.canShare;
 	}
 }

@@ -25,7 +25,7 @@ export default {
 		workspaces: function () { return this.state.workspaces; },
 		workspace: function () { return this.workspaces ? this.workspaces.getById(this.wsid) : null; },
 		isOwnWorkspace: function () { return this.workspace.owner().includes(this.username) },
-		isReadOnlyWorkspace: function () { return !this.workspace.permissions.mine.canWrite(); },
+		isReadOnlyWorkspace: function () { return !this.workspace.permissions.mine.canWrite; },
 		autocopySharedReadOnly: settingsProp ('autocopySharedReadOnly'),
 		dontShowSharedReadOnlyPopUp: settingsProp ('dontShowSharedReadOnlyPopUp'),
 		dontShowSharedWriteAccessPopUp: settingsProp ('dontShowSharedWriteAccessPopUp'),

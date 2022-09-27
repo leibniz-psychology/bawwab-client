@@ -57,8 +57,8 @@ export default {
 		/* owners without us */
 		owners: function () { return this.workspace.ownerUsers.filter (u => u.name != this.username); },
 		/* user can edit project metadata */
-		canEditMeta: function () { return this.permissions.canWrite (); },
-		isReadOnlyWorkspace: function () { return !this.permissions.canWrite(); },
+		canEditMeta: function () { return this.permissions.canWrite; },
+		isReadOnlyWorkspace: function () { return !this.permissions.canWrite; },
 		workspaceAlreadyVisitedKey: function () { return `alreadyVisited${this.workspace.metadata._id}`; },
 	},
 	methods: {

@@ -80,9 +80,9 @@ export default {
 
 		for (const g in ws.permissions.acl.group) {
 			const p = ws.permissions.acl.group[g];
-			if (p.canRead () && !p.canWrite ()) {
+			if (p.canRead && !p.canWrite) {
 				groups[false] = g;
-			} else if (p.canRead () && p.canWrite ()) {
+			} else if (p.canRead && p.canWrite) {
 				groups[true] = g;
 			}
 		}

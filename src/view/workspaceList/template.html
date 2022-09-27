@@ -70,19 +70,19 @@
 		</td>
 		<td class="wl-table_actions">
 			<ul class="wl-actionsList">
-				<li class="wl-actionItem" v-if="w.permissions.mine.canShare ()">
+				<li class="wl-actionItem" v-if="w.permissions.mine.canShare">
 					<tooltip>
 						<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
 						<template v-slot:tip>{{ $t('v.workspaceList.share') }}</template>
 					</tooltip>
 				</li>
-				<li class="wl-actionItem" v-if="w.permissions.mine.canRead ()">
+				<li class="wl-actionItem" v-if="w.permissions.mine.canRead">
 					<tooltip>
 						<action-button class="wl-actionItem_button btn small" icon="copy" :f="() => copy(w)" aria-label="copy"></action-button>
 						<template v-slot:tip>{{ $t('v.workspaceList.copy') }}</template>
 					</tooltip>
 				</li>
-				<li class="wl-actionItem" v-if="w.permissions.mine.canDelete ()">
+				<li class="wl-actionItem" v-if="w.permissions.mine.canDelete">
 					<tooltip>
 						<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
 						<template v-slot:tip>{{ $t('v.workspaceList.delete') }}</template>
@@ -94,16 +94,16 @@
 					</template>
 					<template v-slot:default>
 						<ul>
-							<li v-if="w.permissions.mine.canWriteNamedAttributes ()"><router-link class="btn small" :to="{name: 'workspacePublish', params: {wsid: w.metadata._id}}">
+							<li v-if="w.permissions.mine.canWriteNamedAttributes"><router-link class="btn small" :to="{name: 'workspacePublish', params: {wsid: w.metadata._id}}">
 								<i class="fas fa-globe"></i> {{ $t('v.workspaceList.publish') }}
 							</router-link></li>
-							<li v-if="w.permissions.mine.canRead ()"><router-link class="btn small" :to="{name: 'workspaceExport', params: {wsid: w.metadata._id}}">
+							<li v-if="w.permissions.mine.canRead"><router-link class="btn small" :to="{name: 'workspaceExport', params: {wsid: w.metadata._id}}">
 								<i class="fas fa-file-export"></i> {{ $t('v.workspaceList.export') }}
 							</router-link></li>
-							<li v-if="w.permissions.mine.canRun ()"><router-link class="btn small" :to="{name: 'workspacePackages', params: {wsid: w.metadata._id}}">
+							<li v-if="w.permissions.mine.canRun"><router-link class="btn small" :to="{name: 'workspacePackages', params: {wsid: w.metadata._id}}">
 								<i class="fas fa-box"></i> {{ $t('v.workspaceList.manage') }}
 							</router-link></li>
-							<li v-if="w.permissions.mine.canRead ()"><router-link class="btn small" :to="{name: 'fileManager', params: {wsidA: w.metadata._id}}">
+							<li v-if="w.permissions.mine.canRead"><router-link class="btn small" :to="{name: 'fileManager', params: {wsidA: w.metadata._id}}">
 								<i class="fas fa-file"></i> {{ $t('v.workspaceList.files') }}
 							</router-link></li>
 						</ul>

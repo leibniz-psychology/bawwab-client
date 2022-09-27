@@ -42,7 +42,7 @@ export default class Workspace {
 	}
 
 	get isPublic () {
-		return this.permissions.other.canRead ();
+		return this.permissions.other.canRead;
 	}
 
 	/* Return true if the project is shared with others */
@@ -98,7 +98,7 @@ export default class Workspace {
 	 */
 	runnableApplications () {
 		const ret = [];
-		if (!this.permissions.mine.canRun ()) {
+		if (!this.permissions.mine.canRun) {
 			return ret;
 		}
 		for (const a of this.applications) {

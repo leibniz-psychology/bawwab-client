@@ -19,7 +19,7 @@ export default {
 			return this.workspace?.permissions.mine;
 		},
 		canDelete: function () {
-			return this.permissions?.canDelete () ?? false;
+			return this.permissions?.canDelete ?? false;
 		},
 	},
 	methods: {
