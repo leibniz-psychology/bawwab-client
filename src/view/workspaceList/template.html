@@ -70,7 +70,7 @@
 		</td>
 		<td class="wl-table_actions">
 			<ul class="wl-actionsList">
-				<li class="wl-actionItem">
+				<li class="wl-actionItem" v-if="w.permissions.mine.canShare ()">
 					<tooltip>
 						<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceShare', params: {wsid: w.metadata._id}}" aria-label="share"><i class="fas fa-share"></i></router-link>
 						<template v-slot:tip>{{ $t('v.workspaceList.share') }}</template>
@@ -82,7 +82,7 @@
 						<template v-slot:tip>{{ $t('v.workspaceList.copy') }}</template>
 					</tooltip>
 				</li>
-				<li class="wl-actionItem">
+				<li class="wl-actionItem" v-if="w.permissions.mine.canDelete ()">
 					<tooltip>
 						<router-link class="wl-actionItem_button btn small" :to="{name: 'workspaceDelete', params: {wsid: w.metadata._id}}" aria-label="delete"><i class="fas fa-trash"></i></router-link>
 						<template v-slot:tip>{{ $t('v.workspaceList.delete') }}</template>
