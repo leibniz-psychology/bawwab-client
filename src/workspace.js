@@ -73,6 +73,21 @@ export default class Workspace {
 		return users;
 	}
 
+	/* User can share project read-only */
+	get canShareRead () {
+		return this.permissions.mine.canRead && !this.isPublic;
+	}
+
+	/* User can share project read-write */
+	get canShareWrite () {
+		return this.permissions.mine.canWrite && !this.isPublic;
+	}
+
+	/* User can share project (any mode) */
+	get canShare () {
+		return this.canShareRead || this.canShareWrite;
+	}
+
 	get id () {
 		return this.metadata._id;
 	}

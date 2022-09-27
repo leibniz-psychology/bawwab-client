@@ -3,6 +3,7 @@ import { ConductorClient } from './conductor.js';
 import { publicData, privateData } from './config';
 import { postData, getResponse } from './helper.js';
 import { run as emrun, register as emregister } from './eventManager.js';
+import { groupCreate } from './usermgr.js';
 
 import { reactive } from 'vue/dist/vue.esm-bundler.js';
 
@@ -278,6 +279,53 @@ export default class Workspaces {
 	 */
 	add (ws) {
 		this.workspaces.set (ws.id, ws);
+	}
+
+	async createShareUrl (ws, isWrite) {
+		let group = null;
+
+		if ((!isWrite && !ws.canShareRead) || (isWrite && !ws.canShareWrite)) {
+			/* Project cannot be shared, so bail out early */
+			return null;
+		}
+
+		for (const g in ws.permissions.acl.group) {
+			const p = ws.permissions.acl.group[g];
+			if (!isWrite && p.canRead && !p.canWrite) {
+				group = g;
+				console.debug (`workspaces: Using group ${group} for read-only sharing`);
+			} else if (isWrite && p.canRead && p.canWrite) {
+				group = g;
+				console.debug (`workspaces: Using group ${group} for read-write sharing`);
+			}
+		}
+
+		if (!group) {
+			console.debug (`Creating group for workspace ${ws.id} ${isWrite}`);
+			const name = ws.path.split ('/').pop () + (isWrite ? '-rw' : '-ro');
+			const newgroup = await groupCreate (name);
+			group = newgroup.group;
+			await this.share (ws, `g:${group}`, isWrite);
+		}
+
+		console.debug (`Creating action for group ${group}`);
+		/* {user} is a special symbol, which will be resolved upon evaluation
+		 * of the action */
+		const command = ['usermgr', 'g', 'add', group, '{user}'];
+		const r = await postData('/api/action', {
+				name: 'run',
+				extra: {path: ws.path},
+				command: command,
+				/* 100 years (not kidding) */
+				validFor: 100*365*24*60*60,
+				/* yes, also not kidding */
+				usesRemaining: 10**10,
+				});
+		const action = await getResponse (r);
+		const token = action.token;
+
+		const ident = 'share-' + (isWrite ? 'write' : 'readonly');
+		return new URL (`/action/${token}#${ident}`, window.location.href);
 	}
 }
 

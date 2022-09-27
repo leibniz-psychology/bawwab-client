@@ -1,7 +1,7 @@
 <modal icon="users" :title="$t('v.workspaceShare.sharetitle')" :closeName="$t('v.workspaceShare.close')" :closeLink="{name: 'workspace', params: {wsid: workspace.metadata._id}}" :scaling="true" class="share-project">
 	<select v-model="selectedShareUrl" name="shareKind" size="0" class="wsh-kindSelector">
-		<option selected="selected" :value="false" class="read">{{ $t('v.workspaceShare.read') }}</option>
-		<option :value="true" class="write">{{ $t('v.workspaceShare.write') }}</option>
+		<option selected="selected" :disabled="!shareUrl[false]" :value="false" class="read">{{ $t('v.workspaceShare.read') }}</option>
+		<option :disabled="!shareUrl[true]" :value="true" class="write">{{ $t('v.workspaceShare.write') }}</option>
 	</select>
 	<span class="wsh-kindMeaning">{{ shareMeaning }}</span>
 

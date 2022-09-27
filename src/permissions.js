@@ -27,12 +27,6 @@ export default class Permissions {
 		return this.s.includes ('T');
 	}
 
-	/* Current user can share project with other users.
-	 */
-	get canShare () {
-		return this.canWriteNamedAttributes;
-	}
-
 	/* Current user can delete files. In theory having 'w' is enough, but don’t
 	 * advertise it. */
 	get canDelete () {

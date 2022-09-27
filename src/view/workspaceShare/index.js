@@ -4,7 +4,6 @@ import { queryParamProp } from '../../utils.js';
 import template from './template.html';
 import { trackEvent } from "../../matomo.js";
 import { getResponse } from '../../helper';
-import { groupCreate } from '../../usermgr';
 import './style.css';
 
 const SendStatus = Object.freeze ({
@@ -56,65 +55,11 @@ export default {
 		},
 	},
 	created: async function() {
-		const ws = this.workspace;
-
-		async function createAction (group) {
-			console.debug (`Creating action for group ${group}`);
-			/* {user} is a special symbol, which will be resolved upon evaluation of the action */
-			const command = ['usermgr', 'g', 'add', group, '{user}'];
-			const r = await postData('/api/action', {
-					name: 'run',
-					extra: {path: ws.path},
-					command: command,
-					/* 100 years (not kidding) */
-					validFor: 100*365*24*60*60,
-					/* yes, also not kidding */
-					usesRemaining: 10**10,
-					});
-			const action = await getResponse (r);
-			return action.token;
-		}
-
-		/* Do the groups exist? */
-		let groups = {false: null, true: null};
-
-		for (const g in ws.permissions.acl.group) {
-			const p = ws.permissions.acl.group[g];
-			if (p.canRead && !p.canWrite) {
-				groups[false] = g;
-			} else if (p.canRead && p.canWrite) {
-				groups[true] = g;
-			}
-		}
-
-		async function createGroupForWorkspace (ws, isWrite) {
-			console.debug (`Creating group for workspace ${ws} ${isWrite}`);
-			const name = ws.path.split ('/').pop () + (isWrite ? '-rw' : '-ro');
-			return await groupCreate (name);
-		}
-
-		if (groups[false] === null) {
-			const newgroup = await createGroupForWorkspace (ws, false);
-			groups[false] = newgroup.group;
-			await this.workspaces.share (ws, `g:${groups[false]}`, false);
-		}
-		if (groups[true] === null) {
-			const newgroup = await createGroupForWorkspace (ws, true);
-			groups[true] = newgroup.group;
-			await this.workspaces.share (ws, `g:${groups[true]}`, true);
-		}
-
-		/* async resolve both actions */
-		const keys = [false, true];
-		const values = await Promise.all (keys.map (function (isWrite) {
-			return createAction (groups[isWrite]);
-		}.bind (this)));
-		for (let i = 0; i < keys.length; i++) {
-			const isWrite = keys[i];
-			const token = values[i];
-			const ident = 'share-' + (isWrite ? 'write' : 'readonly');
-			this.shareUrl[isWrite] = new URL (`/action/${token}#${ident}`, window.location.href);
-		}
+		const values = await Promise.all ([
+				this.workspaces.createShareUrl (this.workspace, false),
+				this.workspaces.createShareUrl (this.workspace, true)]);
+		this.shareUrl[false] = values[0];
+		this.shareUrl[true] = values[1];
 	},
 	methods: {
 		copyToClipboard: async function(text) {
