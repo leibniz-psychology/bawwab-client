@@ -3,7 +3,7 @@
 		<div class="fm-A">
 			<h3>{{ $t(enableSelectA ? 'v.filemanager.source' : 'v.filemanager.target') }}</h3>
 			<div class="fm-path">
-				<select v-model="wsidA" disabled>
+				<select class="fm-project_A" v-model="wsidA" disabled>
 					<option value="">{{ $t('v.filemanager.none') }}</option>
 					<option v-for="w of workspaces.all()" :value="w.metadata._id">{{ w.metadata.name }}</option>
 				</select>
@@ -37,7 +37,7 @@
 		<div class="fm-B" v-if="wsidB">
 			<h3>{{ $t(enableSelectB ? 'v.filemanager.source' : 'v.filemanager.target') }}</h3>
 			<div class="fm-path">
-				<select v-model="newWsidB">
+				<select class="fm-project_B" v-model="newWsidB">
 					<option value="">{{ $t('v.filemanager.none') }}</option>
 					<option v-for="w of workspaces.all()" :value="w.metadata._id">{{ w.metadata.name }}</option>
 				</select>
