@@ -1,10 +1,22 @@
 <div class="fi-container">
 	<div class="fi-actions">
-		<a v-if="canMkdir" @click="prepareMkdir" class="btn low"><i class="fa fa-folder-plus"></i></a>
-		<action-button v-if="canUpload" icon="upload" :f="uploadSelect"></action-button>
-		<input type="file" ref="upload" @change="upload" style="display: none" multiple>
-		<a v-if="canDownload" :href="downloadUrl" :class="'btn low' + (downloadUrl === null ? ' disabled' : '')"><i class="fa fa-download"></i></a>
-		<action-button v-if="canDelete" icon="trash" :f="deleteFiles" :disabled="selected.length == 0"></action-button>
+		<tooltip>
+			<a v-if="canMkdir" @click="prepareMkdir" class="btn low"><i class="fa fa-folder-plus"></i></a>
+			<template v-slot:tip>{{ $t('c.files.mkdir') }}</template>
+		</tooltip>
+		<tooltip>
+			<action-button v-if="canUpload" icon="upload" :f="uploadSelect"></action-button>
+			<input type="file" ref="upload" @change="upload" style="display: none" multiple>
+			<template v-slot:tip>{{ $t('c.files.upload') }}</template>
+		</tooltip>
+		<tooltip>
+			<a v-if="canDownload" :href="downloadUrl" :class="'btn low' + (downloadUrl === null ? ' disabled' : '')"><i class="fa fa-download"></i></a>
+			<template v-slot:tip>{{ $t('c.files.download') }}</template>
+		</tooltip>
+		<tooltip>
+			<action-button v-if="canDelete" icon="trash" :f="deleteFiles" :disabled="selected.length == 0"></action-button>
+			<template v-slot:tip>{{ $t('c.files.delete') }}</template>
+		</tooltip>
 	</div>
 
 	<div class="fi-files">

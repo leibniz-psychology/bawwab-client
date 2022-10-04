@@ -1,5 +1,6 @@
 import {nextTick} from 'vue/dist/vue.esm-bundler.js';
 import { store } from '../../app.js';
+import TooltipComponent from "../../component/tooltip";
 import template from './template.html';
 import './style.css';
 
@@ -19,6 +20,9 @@ export default {
 		canSelect: {type: Boolean, default: () => true},
 		onChangeDir: {type: Function},
 		onSelected: {type: Function},
+	},
+	components: {
+		tooltip: TooltipComponent,
 	},
 	data: _ => ({
 		state: store.state,

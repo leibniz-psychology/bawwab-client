@@ -283,7 +283,11 @@
         },
         "files": {
             "newNamePlaceholder": "New folder name",
-            "notfound": "Folder does not exist."
+            "notfound": "Folder does not exist.",
+            "mkdir": "Create folder",
+            "upload": "Upload files",
+            "download": "Download file",
+            "delete": "Delete files"
         }
     }
 }

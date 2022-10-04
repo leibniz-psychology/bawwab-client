@@ -282,7 +282,11 @@
     },
     "files": {
         "newNamePlaceholder": "Neuer Ordnername",
-        "notfound": "Ordner existiert nicht."
+        "notfound": "Ordner existiert nicht.",
+        "mkdir": "Ordner erstellen",
+        "upload": "Dateien hochladen",
+        "download": "Datei herunterladen",
+        "delete": "Dateien löschen"
     }
   }
 }
