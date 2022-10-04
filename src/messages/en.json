@@ -225,7 +225,7 @@
         },
         "filemanager": {
             "none": "(Hide target panel)",
-            "title": "Files",
+            "title": "Manage files",
             "close": "Close",
             "source": "Source",
             "target": "Target",

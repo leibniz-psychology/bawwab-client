@@ -224,7 +224,7 @@
     },
     "filemanager": {
         "none": "(Ziel verstecken)",
-        "title": "Dateien",
+        "title": "Dateien verwalten",
         "close": "Schließen",
         "source": "Quelle",
         "target": "Ziel",
