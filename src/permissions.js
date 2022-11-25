@@ -30,6 +30,6 @@ export default class Permissions {
 	/* Current user can delete files. In theory having 'w' is enough, but don’t
 	 * advertise it. */
 	get canDelete () {
-		return this.canShare;
+		return this.canWriteNamedAttributes;
 	}
 }
