@@ -290,6 +290,12 @@ export default class Workspaces {
 		}
 
 		for (const g in ws.permissions.acl.group) {
+			/* Ignore legacy user groups, which cannot be
+			 * modified through usermgrd */
+			if (!g.startsWith ('group-')) {
+				continue;
+			}
+
 			const p = ws.permissions.acl.group[g];
 			if (!isWrite && p.canRead && !p.canWrite) {
 				group = g;
