@@ -170,3 +170,17 @@ export function getAllProcs () {
 	return procs;
 }
 
+const tokenPrefix = function () {
+	const a = new Uint8Array (16);
+	window.crypto.getRandomValues (a);
+	return Array.from(a.values()).map(x => x.toString(16).padStart (2, '0')).join('');
+	}();
+let tokenId = 0;
+
+/* Get a unique token for use with run() */
+export function getToken () {
+	const token = tokenPrefix + '-' + tokenId;
+	tokenId++;
+	return token;
+}
+

@@ -1,4 +1,4 @@
-import { getAllProcs, get as pmget, run as pmrun } from './processManager';
+import { getAllProcs, get as pmget, run as pmrun, getToken } from './processManager';
 
 import AsyncNotify from './asyncNotify.js';
 
@@ -8,8 +8,6 @@ class DeferredError extends Error {
 class NotRegisteredError extends Error {
 };
 
-const tokenPrefix = Date.now ();
-let tokenId = 0;
 const handler = new Map ();
 /* disallow all handler at first */
 let allowedHandler = /^$/i;
@@ -110,8 +108,7 @@ export async function setAllowedHandler (re) {
 export async function run (name, args=null, command=null, action=null, options={}) {
 	console.debug ('em running', name, args, command, action, options);
 
-	const token = tokenPrefix + '-' + tokenId;
-	tokenId++;
+	const token = getToken ();
 	const n = new AsyncNotify ();
 	waiting.set (token, n);
 

@@ -1,4 +1,4 @@
-import { get as pmget, run as pmrun } from './processManager';
+import { get as pmget, run as pmrun, getToken } from './processManager';
 
 export class UsermgrError extends Error {
 }
@@ -7,7 +7,7 @@ export class UsermgrNotAMember extends UsermgrError {
 }
 
 export async function groupCreate (name) {
-	const token = 'usermgr-' + Date.now();
+	const token = getToken ();
 	await pmrun (token, ['usermgr', 'g', 'create', name], null, null);
 	const p = await pmget (token);
 	const ret = await p.wait ();
@@ -21,7 +21,7 @@ export async function groupCreate (name) {
 }
 
 export async function groupDelete (name) {
-	const token = 'usermgr-' + Date.now();
+	const token = getToken ();
 	await pmrun (token, ['usermgr', 'g', 'delete', name], null, null);
 	const p = await pmget (token);
 	const ret = await p.wait ();
