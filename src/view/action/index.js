@@ -14,8 +14,6 @@ export default {
 		state: store.state,
 		}),
 	created: async function () {
-		await this.state.ready.wait ();
-
 	 	console.debug ('executing action %s', this.token);
 	 	const r = await fetch ('/api/action/' + this.token);
 	 	try {
@@ -36,14 +34,9 @@ export default {
 	 			}
 	 		}
 		} catch (e) {
-			console.error ('failed: %o', e);
 			if (e.message == 'unauthenticated') {
-				const url = new URL ('/api/session/login', window.location.href);
-				const next = new URL (this.$route.fullPath, window.location.href);
-				next.hash = '';
-				url.searchParams.append ('next', next.toString ());
-				console.debug ('unauthicanted, going to %o', url.toString ());
-				document.location = url.toString ();
+				/* This should never happen. Logic handled by routing. */
+				this.message = 'v.action.you-cant-cheat-death';
 			} else {
 				this.message = 'v.action.' + e.message;
 			}

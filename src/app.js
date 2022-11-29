@@ -202,11 +202,24 @@ router.onError (function (err) {
 });
 router.beforeEach (async function (to, from) {
 	console.log ('called before handler with', to, from, store.state.user);
-	/* XXX: should async get the user here */
-	if (store.state.user?.loginStatus == 'termsOfService' && to.meta.requireAuth) {
-		console.debug ('Require terms of service, redirecting', to);
-		return {name: 'termsPrompt', query: {next: to.fullPath}};
+
+	await store.state.ready.wait ();
+	if (to.meta.requireAuth) {
+		if (store.state.user?.loginStatus == 'termsOfService') {
+			/* Need to accept ToS before continuing */
+			console.debug ('Require terms of service, redirecting', to);
+			return {name: 'termsPrompt', query: {next: to.fullPath}};
+		} else if (store.state.user === null) {
+			/* Not authenticated, try again with authentication. */
+			const url = new URL ('/api/session/login', window.location.href);
+			const next = new URL (to.fullPath, window.location.href);
+			next.hash = '';
+			url.searchParams.append ('next', next.toString ());
+			console.debug ('unauthorized, going to %o', url.toString ());
+			document.location = url.toString ();
+		}
 	}
+
 	console.debug ('accept navigation');
 	return true;
 });

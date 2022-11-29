@@ -28,7 +28,6 @@ export default {
 		'ago': NaturalAgoComponent,
 	},
 	created: async function () {
-		await this.state.ready.wait ();
 		await this.state.borg.list (this.workspace);
 	},
 	computed: {

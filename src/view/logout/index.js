@@ -17,8 +17,6 @@ export default {
 		},
 	},
 	created: async function () {
-		await store.state.ready.wait ();
-
 		await store.state.session.destroy ();
 		await store.init ();
 		this.done = true;
