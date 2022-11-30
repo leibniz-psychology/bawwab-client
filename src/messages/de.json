@@ -6,7 +6,8 @@
     "help": "Hilfe"
   },
   "g": {
-    "copyname": "Kopie von {name}"
+    "copyname": "Kopie von {name}",
+    "supportMail": "psychnotebook{'@'}leibniz-psychology.org"
   },
   "v": {
     "index": {
@@ -174,7 +175,9 @@
       "title": "Pakete verwalten",
       "nopackages": "Keine Pakete gefunden",
       "description": "Hier können Pakete zum Projekt hinzugefügt werden. Um das R-Paket <em>beispiel</em> zu suchen, verwende <kbd>^r-beispiel</kbd>.",
-      "searchFailed": "Die Suche ist fehlgeschlagen. Bitte versuche es erneut."
+      "searchFailed": "Die Suche ist fehlgeschlagen. Bitte versuche es erneut.",
+      "packageBuildFailed": "Die folgenden Pakete konnten nicht installiert werden: {packages}.",
+      "genericError": "Die Änderungen können nicht angewendet werden."
     },
     "workspacePublish": {
       "title": "Projekt veröffentlichen",
@@ -287,6 +290,9 @@
         "upload": "Dateien hochladen",
         "download": "Datei herunterladen",
         "delete": "Dateien löschen"
+    },
+    "supportEmail": {
+        "query": "Bitte wende Dich unter Angabe der ID {id} an {email}."
     }
   }
 }

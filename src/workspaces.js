@@ -7,6 +7,14 @@ import { groupCreate } from './usermgr.js';
 
 import { reactive } from 'vue/dist/vue.esm-bundler.js';
 
+export class WorkspaceError extends Error {
+	constructor(token, data) {
+		super('workspaceError');
+		this.token = token;
+		this.data = data;
+	}
+};
+
 export default class Workspaces {
 	constructor (user) {
 		this.user = user;
@@ -70,7 +78,7 @@ export default class Workspaces {
 		if (ret == 0) {
 			return workspaces.map (o => new Workspace (o));
 		} else {
-			throw Error ('unhandled');
+			throw new WorkspaceError (p.token, workspaces[workspaces.length-1]);
 		}
 	}
 

@@ -1,4 +1,16 @@
 <modal :title="$t('v.workspacePackages.title')" icon="box" :closeName="$t('v.workspacePackages.close')" :closeLink="{name: 'workspace', params: {wsid: workspace.metadata._id}}" :scaling="false">
+		<message v-if="status?.name === 'packageBuild'" kind="warning">
+			<i18n-t keypath="v.workspacePackages.packageBuildFailed" tag="p">
+				<template v-slot:packages>
+					<span v-for="p of status.packages">{{ p }}</span>
+				</template>
+			</i18n-t>
+			<p v-if="status.token"><supportEmail :id="status.token"></supportEmail></p>
+		</message>
+		<message v-if="status?.name === 'error'" kind="warning">
+			<p>{{ $t('v.workspacePackages.genericError') }}</p>
+			<p v-if="status.token"><supportEmail :id="status.token"></supportEmail></p>
+		</message>
 		<p v-html="$t('v.workspacePackages.description')"></p>
 		<div class="wp-packageSearch">
 			<input type="search" :placeholder="$t('v.workspacePackages.searchPackage')" :disabled="busy" v-model="search">

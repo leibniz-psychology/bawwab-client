@@ -1,6 +1,8 @@
 import { store } from '../../app.js';
 import { queryParamProp, CancelledError } from '../../utils.js';
 import template from './template.html';
+import { WorkspaceError } from '../../workspaces';
+import SupportEmail from '../../component/supportEmail';
 import './style.css';
 
 export default {
@@ -15,10 +17,12 @@ export default {
 		packages: [],
 		packageFilter: ['installed', 'add', 'remove'],
 		defaultPackageFilter: ['add', 'remove'],
-		/* Currently applying changes */
-		busy: false,
+		status: null,
 	}),
     template: template,
+	components: {
+		SupportEmail,
+	},
 	beforeRouteLeave: async function (to, from) {
 		if (this.cancel) {
 			this.cancel (new CancelledError ());
@@ -63,43 +67,53 @@ export default {
 		/* inspired by https://stackoverflow.com/a/60786867 */
 		search: queryParamProp ('search', ''),
 		searchFailed: function () { return this.searching instanceof Error },
+		busy: function () { return this.status?.name === 'busy' },
 	},
     methods: {
 		doPackageUpgrade: async function () {
-			this.busy = true;
-			try {
-				await this.state.workspaces.packageUpgrade (this.workspace);
-			} finally {
-				this.busy = false;
-			}
+			this.status = {name: 'busy'};
+			await this.state.workspaces.packageUpgrade (this.workspace);
+			this.status = {name: 'success'};
+
 			this.packageFilter = this.defaultPackageFilter;
 			this.search = '';
 		},
 		doPackageModify: async function () {
-			let cancelled = false;
-			this.busy = true;
+			this.status = {name: 'busy'};
 			try {
 				/* Make the promise “cancellable”, although packageModify is
 				 * not really cancelled, we just ignore its results. */
 				await Promise.race ([
 						this.state.workspaces.packageModify (this.workspace, this.packageTransforms),
 						new Promise (function (resolve, reject) { this.cancel = reject }.bind (this))]);
+				this.status = {name: 'success'};
 				await this.$router.push ({name: 'workspace', params: {wsid: this.workspace.metadata._id}});
 			} catch (e) {
+				console.debug ('workspacePackages failed: ' + e);
 				if (e instanceof CancelledError) {
-					cancelled = true;
+					this.status = {name: 'cancelled'};
+				} else if (e instanceof WorkspaceError) {
+					if (e.data.status == "package_build_error") {
+						this.status = {name: 'packageBuild', packages: e.data.packages, token: e.token};
+
+						/* Remove transaction flags (add/remove) from failed packages, so the
+						   user can simply click apply again */
+						for (const name of e.data.packages) {
+							const ps = this.packages.find (ps => ps.p.name === name);
+							console.debug ('Undoing actions for %o: %o', name, ps);
+							if (ps) {
+								this.undoPackageAction (ps);
+							}
+						}
+					} else {
+						this.status = {name: 'error', token: e.token};
+					}
 				} else {
 					/* pass */
+					this.status = {name: 'error'};
 				}
 			} finally {
-				this.busy = false;
 				this.cancel = null;
-			}
-			if (!cancelled) {
-				this.packageFilter = this.defaultPackageFilter;
-				/* this must be conditional, since it modifies the route and
-				 * cancellation also modifies the route */
-				this.search = '';
 			}
 		},
 		addPackage: function (ps) {

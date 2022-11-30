@@ -6,7 +6,8 @@
         "help": "Help"
     },
     "g": {
-        "copyname": "Copy of {name}"
+        "copyname": "Copy of {name}",
+        "supportMail": "psychnotebook{'@'}leibniz-psychology.org"
     },
     "v": {
         "index": {
@@ -172,7 +173,9 @@
             "title": "Manage packages",
             "nopackages": "No packages found",
             "description": "Here you can add packages to your project. Use <kbd>^r-package</kbd> to search for R packages only.",
-            "searchFailed": "The search failed. Please try again."
+            "searchFailed": "The search failed. Please try again.",
+            "packageBuildFailed": "Cannot install the following packages: {packages}.",
+            "genericError": "Cannot apply changes."
         },
         "workspacePublish": {
             "title": "Publish project",
@@ -288,6 +291,9 @@
             "upload": "Upload files",
             "download": "Download file",
             "delete": "Delete files"
+        },
+        "supportEmail": {
+            "query": "Please contact {email} stating the ID {id}."
         }
     }
 }
