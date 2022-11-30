@@ -29,6 +29,10 @@
     white-space: pre-wrap;
 }
 
+.app-message p {
+    margin: 0;
+}
+
 .app-message .close {
     cursor: pointer;
     text-align: right;
