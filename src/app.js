@@ -182,9 +182,6 @@ const app = createApp ({
 		isLockedOut: function () {
 			return this.state.user && this.state.user.loginStatus == 'permissionDenied';
 		},
-		supportMail: function () {
-			return 'psychnotebook@leibniz-psychology.org';
-		},
 		motd: function () {
 			return this.state.user ? this.state.user.motd : null;
 		},
