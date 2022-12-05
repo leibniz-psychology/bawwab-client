@@ -33,6 +33,15 @@ export default {
 		workspaceB: function () {
 			return this.wsidB ? this.workspaces.getById (this.wsidB) : null;
 		},
+		workspacesB: function () {
+			if (this.enableSelectB) {
+				/* Any workspace can be a source */
+				return this.workspaces.all ();
+			} else if (this.enableSelectA) {
+				/* Only those, which we can actually write to. */
+				return this.workspaces.all().filter (w => w.permissions.mine.canWrite);
+			}
+		},
 		selected: function () {
 			return [].concat (this.selectedA).concat (this.selectedB);
 		},

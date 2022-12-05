@@ -22,7 +22,7 @@
 			<ul>
 				<li>
 					<tooltip>
-						<action-button icon="copy" :f="copyFiles" :disabled="selected.length == 0 || !canWriteB"></action-button>
+						<action-button icon="copy" :f="copyFiles" :disabled="selected.length == 0 || (enableSelectA && !canWriteB) || (enableSelectB && !canWriteA)"></action-button>
 						<template v-slot:tip>{{ $t('v.filemanager.copy') }}</template>
 					</tooltip>
 				</li>
@@ -39,7 +39,7 @@
 			<div class="fm-path">
 				<select class="fm-project_B" v-model="newWsidB">
 					<option value="">{{ $t('v.filemanager.none') }}</option>
-					<option v-for="w of workspaces.all()" :value="w.metadata._id">{{ w.metadata.name }}</option>
+					<option v-for="w of workspacesB" :value="w.metadata._id">{{ w.metadata.name }}</option>
 				</select>
 			</div>
 
