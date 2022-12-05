@@ -43,6 +43,10 @@
     margin-bottom: 0.2em;
 }
 
+.wsh-input textarea {
+    resize: vertical;
+}
+
 .wsh-addAddressBtn {
     margin-bottom: 1.0em;
 }
