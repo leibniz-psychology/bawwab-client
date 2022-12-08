@@ -206,7 +206,7 @@ router.beforeEach (async function (to, from) {
 			/* Need to accept ToS before continuing */
 			console.debug ('Require terms of service, redirecting', to);
 			return {name: 'termsPrompt', query: {next: to.fullPath}};
-		} else if (store.state.user === null) {
+		} else if (!store.state.session.authenticated()) {
 			/* Not authenticated, try again with authentication. */
 			const url = new URL ('/api/session/login', window.location.href);
 			const next = new URL (to.fullPath, window.location.href);
