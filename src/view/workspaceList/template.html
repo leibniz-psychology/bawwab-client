@@ -94,7 +94,7 @@
 					</template>
 					<template v-slot:default>
 						<ul>
-							<li v-if="w.permissions.mine.canWriteNamedAttributes"><router-link class="btn small" :to="{name: 'workspacePublish', params: {wsid: w.metadata._id}}">
+							<li v-if="w.canPublish"><router-link class="btn small" :to="{name: 'workspacePublish', params: {wsid: w.metadata._id}}">
 								<i class="fas fa-globe"></i> {{ $t('v.workspaceList.publish') }}
 							</router-link></li>
 							<li v-if="w.permissions.mine.canRead"><router-link class="btn small" :to="{name: 'workspaceExport', params: {wsid: w.metadata._id}}">

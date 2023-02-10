@@ -88,6 +88,10 @@ export default class Workspace {
 		return this.canShareRead || this.canShareWrite;
 	}
 
+	get canPublish () {
+		return this.permissions.mine.canWriteNamedAttributes;
+	}
+
 	get id () {
 		return this.metadata._id;
 	}
