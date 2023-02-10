@@ -22,11 +22,11 @@
 					<li v-for="o of owners">{{ o.nick }}</li>
 				</ul>
 			</li>
-			<li v-if="workspace.isShared" class="ws-workspace_shared">
+			<li v-if="sharedUsersWithoutOwner.length > 0" class="ws-workspace_shared">
 				<i class="fa fa-users"></i>
 				{{ $t('v.workspaceShow.sharedwith') }}
 				<ul>
-					<li v-for="u of workspace.sharedUsers">{{ u.nick }}</li>
+					<li v-for="u of sharedUsersWithoutOwner">{{ u.nick }}</li>
 				</ul>
 			</li>
 

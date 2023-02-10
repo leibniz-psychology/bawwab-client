@@ -60,6 +60,12 @@ export default {
 		canEditMeta: function () { return this.permissions.canWrite; },
 		isReadOnlyWorkspace: function () { return !this.permissions.canWrite; },
 		workspaceAlreadyVisitedKey: function () { return `alreadyVisited${this.workspace.metadata._id}`; },
+		sharedUsersWithoutOwner: function () {
+			const ws = this.workspace;
+			const users = Array.from (ws.sharedUsers);
+			const owners = ws.owner ();
+			return users.filter (u => !owners.includes (u.name));
+		},
 	},
 	methods: {
 		setWorkspaceVisited: async function () {
