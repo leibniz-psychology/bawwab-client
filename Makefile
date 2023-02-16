@@ -15,7 +15,7 @@ endif
 # Edge: Last three versions.
 # Firefox: Latest ESR release.
 # Safari: Last three versions.
-TARGETS:=chrome87,firefox78,safari12,edge87
+TARGETS:=chrome107,firefox102,safari14,edge107
 
 build: _build/html/assets _build/html/assets/serviceworker.js _build/html/index.html
 	
