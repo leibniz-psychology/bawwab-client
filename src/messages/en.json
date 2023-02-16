@@ -2,7 +2,8 @@
     "app": {
         "projects": "Projects",
         "loading": "Just a second…",
-        "locked": "Your account is locked right now. Please contact <a href=\"mailto:{mail}\">{mail}</a> via email.",
+        "offline-lockedOut": "Your account is locked right now. Please contact <a href=\"mailto:{mail}\">{mail}</a> via email.",
+        "offline-createUser": "User account cannot be created right now. Please try again later.",
         "help": "Help"
     },
     "g": {

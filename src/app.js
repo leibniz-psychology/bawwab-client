@@ -57,6 +57,7 @@ export const store = {
 		/* cache for terms of service. Hash prefix is reserved for private
 		 * props. */
 		'#termsOfService': null,
+		offlineReason: null,
 
 		/* notify when the store is fully initialized */
 		ready: new AsyncNotify (),
@@ -86,6 +87,9 @@ export const store = {
 			if (acceptTos && this.state.user.loginStatus == 'termsOfService') {
 				await this.state.user.acceptTos ();
 			}
+			if (this.state.user.loginStatus == 'permissionDenied') {
+				this.state.offlineReason = 'lockedOut';
+			}
 		} catch (e) {
 			if (e.message == 'nonexistent' && this.state.session.authenticated()) {
 				try {
@@ -94,6 +98,7 @@ export const store = {
 				} catch (e) {
 					/* if creating a user fails the back-end must be broken */
 					this.state.user = null;
+					this.state.offlineReason = 'createUser';
 				}
 			} else {
 				/* just accept the fact */
@@ -179,9 +184,7 @@ const app = createApp ({
 		haveWorkspaces: function () {
 			return store.haveWorkspaces ();
 		},
-		isLockedOut: function () {
-			return this.state.user && this.state.user.loginStatus == 'permissionDenied';
-		},
+		offlineReason: function () { return this.state.offlineReason; },
 		motd: function () {
 			return this.state.user ? this.state.user.motd : null;
 		},

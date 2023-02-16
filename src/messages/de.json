@@ -2,7 +2,8 @@
   "app": {
     "projects": "Projekte",
     "loading": "Einen Moment bitte…",
-    "locked": "Dein Benutzerkonto ist zurzeit gesperrt. Bitte melde Dich per E-Mail bei <a href=\"mailto:{mail}\">{mail}</a>.",
+    "offline-lockedOut": "Dein Benutzerkonto ist zurzeit gesperrt. Bitte melde Dich per E-Mail bei <a href=\"mailto:{mail}\">{mail}</a>.",
+    "offline-createUser": "Dein Benutzerkonto kann zurzeit nicht erstellt werden. Bitte versuche es später nochmal.",
     "help": "Hilfe"
   },
   "g": {
