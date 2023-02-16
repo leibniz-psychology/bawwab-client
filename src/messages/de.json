@@ -191,7 +191,8 @@
     "login": {
       "login": "Anmelden",
       "status-failure": "Die Anmeldung war nicht erfolgreich. Bitte versuche es noch einmal.",
-      "status-success": "Angemeldet"
+      "status-success": "Angemeldet",
+      "status-state_mismatch": "Die Anmeldung war nicht erfolgreich. Bitte erlaube Cookies für diese Webseite und <a href=\"/api/session/login\">versuche es erneut</a>."
     },
     "notFound": {
       "notfound": "Nicht gefunden"

@@ -10,7 +10,7 @@ export default {
 		}),
 	computed: {
 		message: function () {
-			var m = this.$t('status-' + this.status);
+			var m = this.$t('v.login.status-' + this.status);
 			return m;
 		},
 	},

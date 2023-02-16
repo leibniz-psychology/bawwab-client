@@ -189,7 +189,8 @@
         "login": {
             "login": "Login",
             "status-failure": "Login was not successful. Please try again.",
-            "status-success": "Logged in"
+            "status-success": "Logged in",
+      "status-state_mismatch": "Login was not successful. Please allow cookies for this website and <a href=\"/api/session/login\">try again</a>."
         },
         "notFound": {
             "notfound": "Not found"
