@@ -5,17 +5,17 @@
   #:use-module (guix build-system node)
   #:use-module (vue))
 
-(define-public node-vue-router-4.0.12
+(define-public node-vue-router-4.1.6
   (package
     (name "node-vue-router")
-    (version "4.0.12")
+    (version "4.1.6")
     (source
       (origin
         (method url-fetch)
-        (uri "https://registry.npmjs.org/vue-router/-/vue-router-4.0.12.tgz")
+        (uri "https://registry.npmjs.org/vue-router/-/vue-router-4.1.6.tgz")
         (sha256
           (base32
-            "07ng94yhbhakdn76pqvc7113iz8p3r9cv9b0ykq49qx1n3gykxds"))))
+            "13wvrd5h92l0m2byd1k778fnmachdb0px2fl8fbxil4r9fl5hxa3"))))
     (build-system node-build-system)
     (arguments
       `(#:tests?
@@ -27,12 +27,9 @@
           (delete 'build))))
     (inputs
       `(("node-vue-devtools-api"
-         ,node-vue-devtools-api-6.0.0-beta.20.1)))
+         ,node-vue-devtools-api-6.5.0)))
     (home-page
-      "https://www.npmjs.com/package/node-vue-router")
-    (synopsis
-      "> This is the repository for Vue Router 4 (for Vue 3)")
-    (description
-      "> This is the repository for Vue Router 4 (for Vue 3)")
+      "https://github.com/vuejs/router#readme")
+    (synopsis "")
+    (description "")
     (license license:expat)))
-

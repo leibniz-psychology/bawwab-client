@@ -272,14 +272,14 @@
           (delete 'build))))
     (inputs
       `(("node-vue-devtools-api"
-         ,node-vue-devtools-api-6.0.0-beta.20.1)
+         ,node-vue-devtools-api-6.5.0)
         ("node-intlify-vue-devtools"
          ,node-intlify-vue-devtools-9.1.9)
         ("node-intlify-shared"
          ,node-intlify-shared-9.1.9)
         ("node-intlify-core-base"
          ,node-intlify-core-base-9.1.9)
-        ("node-vue" ,node-vue-3.2.22)))
+        ("node-vue" ,node-vue-3.2.47)))
     (home-page
       "https://github.com/intlify/vue-i18n-next/tree/master/packages/vue-i18n#readme")
     (synopsis

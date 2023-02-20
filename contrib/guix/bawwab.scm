@@ -31,8 +31,8 @@
        #~(modify-phases %standard-phases
          (delete 'configure))))
     (inputs
-      `(("node-vue" ,node-vue-3.2.22)
-        ("node-vue-router" ,node-vue-router-4.0.12)
+      `(("node-vue" ,node-vue-3.2.47)
+        ("node-vue-router" ,node-vue-router-4.1.6)
         ("node-purecss" ,node-purecss-2.0.6)
         ("node-commonmark" ,node-commonmark-0.30.0)
         ("node-vue-i18n" ,node-vue-i18n-9.1.9)))
