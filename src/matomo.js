@@ -2,6 +2,7 @@ export function trackNavigation (data) {
 	_paq.push(['setReferrerUrl', data.referrer]);
 	_paq.push(['setCustomUrl', data.url]);
 	_paq.push(['setDocumentTitle', data.documentTitle]);
+	_paq.push(['disableCookies']);
 	_paq.push(['trackPageView']);
 }
 
