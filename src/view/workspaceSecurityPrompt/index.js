@@ -12,13 +12,14 @@ export default {
 		/* application strings */
 	}),
 	computed: {
-		title: function () {
+		boxtitle: function () {
 			if (this.isReadOnlyWorkspace) {
 				return this.$t('v.workspaceSecurityPrompt.titleCopy');
 			} else {
 				return this.$t('v.workspaceSecurityPrompt.titleWrite');
 			}
 		},
+		title: function () { return this.workspace.metadata.name + ' - ' + this.title; },
 		username: function () { return this.state.user?.name; },
 		/* Used by settingsProp() */
 		settings: function () { return this.state.settings; },

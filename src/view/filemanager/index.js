@@ -47,6 +47,7 @@ export default {
 		},
 		canWriteA: function () { return this.workspaceA.permissions.mine.canWrite; },
 		canWriteB: function () { return this.workspaceB.permissions.mine.canWrite; },
+		title: function() { return `${this.workspaceA.metadata.name} - ${this.$t('v.filemanager.title')}`; },
 	},
     methods: {
 		copyFiles: async function () {

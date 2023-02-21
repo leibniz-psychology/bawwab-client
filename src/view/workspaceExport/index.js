@@ -17,6 +17,7 @@ export default {
 		workspace: function () {
 			return this.workspaces ? this.workspaces.getById (this.wsid) : null;
 		},
+		title: function () { return this.workspace.metadata.name + ' - ' + this.$t('v.workspaceExport.headline'); },
 	},
 	methods: {
         run: async function() {

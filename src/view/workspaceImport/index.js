@@ -12,6 +12,9 @@ export default {
 		busy: false,
 		selectedFile: null,
 	}),
+	computed: {
+		title: function () { return this.$t('v.workspaceImport.headline'); },
+	},
 	methods: {
 		/* cannot make this reactive (i.e. computed method) for some reason */
 		validate: function (e) {

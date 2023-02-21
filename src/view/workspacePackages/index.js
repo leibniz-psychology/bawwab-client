@@ -68,6 +68,7 @@ export default {
 		search: queryParamProp ('search', ''),
 		searchFailed: function () { return this.searching instanceof Error },
 		busy: function () { return this.status?.name === 'busy' },
+		title: function () { return this.workspace.metadata.name + ' - ' + this.$t('v.workspacePackages.title'); },
 	},
     methods: {
 		doPackageUpgrade: async function () {

@@ -15,6 +15,7 @@ export default {
 			u.searchParams.append ('next', redirectUrl);
 			return u;
 		},
+		title: function() { return this.$t('v.logout.logout'); },
 	},
 	created: async function () {
 		await store.state.session.destroy ();

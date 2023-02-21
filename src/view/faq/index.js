@@ -8,5 +8,8 @@ export default {
 	components: {
 		FaqSideNav,
 	},
+	computed: {
+		title: function() { return this.$t('v.faq.title'); },
+	},
 };
 

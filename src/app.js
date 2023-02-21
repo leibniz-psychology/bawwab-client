@@ -34,7 +34,7 @@ import './css/style.css';
 
 /* The default module does not include template compiling
  * XXX: figure out how to configure esbuild correctly to do this replacement */
-import { createApp, reactive } from 'vue/dist/vue.esm-bundler.js';
+import { createApp, reactive, nextTick } from 'vue/dist/vue.esm-bundler.js';
 /* XXX: Would be nice if we could use it, but esbuild messes up order currently.*/
 /*import 'purecss/build/pure.css';
 import 'purecss/build/grids-responsive.css';*/
@@ -224,6 +224,24 @@ router.beforeEach (async function (to, from) {
 	return true;
 });
 router.afterEach ((to, from, failure) => {
+	/* Instances are only available on next tick. We should not await here,
+	 * because it stops the app redraw. */
+	nextTick (function () {
+		/* This works fine as long as the component does not update its title
+		 * or set it late (i.e. via created() method). */
+		const matched = to.matched;
+		let title = '';
+		if (matched.length > 0) {
+			const instances = matched[0].instances;
+			/* Prefer overlay title */
+			title = instances.overlay?.title ?? instances.default?.title ?? '';
+			if (title) {
+				title += ' | ';
+			}
+		}
+		document.title = title + 'PsychNotebook';
+	});
+
 	if (!failure && store.state?.session?.authenticated?.()) {
 		trackNavigation ({
 			referrer: from.fullPath,

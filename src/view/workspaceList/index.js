@@ -47,6 +47,7 @@ export default {
 			}},
 		filter: queryParamProp ('filter', 'mine'),
 		filtertext: queryParamProp ('search', ''),
+		title: function () { return this.$t('v.workspaceList.projects'); },
 	},
 	methods: {
 		copy,

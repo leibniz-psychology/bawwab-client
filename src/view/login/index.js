@@ -13,6 +13,7 @@ export default {
 			var m = this.$t('v.login.status-' + this.status);
 			return m;
 		},
+		title: function() { return this.$t('v.login.login'); },
 	},
 	created: async function () {
         const wsRoute = {name: 'workspaces'};

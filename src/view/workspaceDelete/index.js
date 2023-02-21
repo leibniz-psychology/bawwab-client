@@ -21,6 +21,10 @@ export default {
 		canDelete: function () {
 			return this.permissions?.canDelete ?? false;
 		},
+		boxtitle: function () {
+			return this.canDelete ? this.$t('v.workspaceDelete.deletetitle') : this.$t('v.workspaceDelete.hidetitle');
+		},
+		title: function() { return this.workspace.metadata.name + ' - ' + this.boxtitle; },
 	},
 	methods: {
         deleteWorkspace: async function() {

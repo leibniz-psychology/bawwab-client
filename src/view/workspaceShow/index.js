@@ -66,6 +66,7 @@ export default {
 			const owners = ws.owner ();
 			return users.filter (u => !owners.includes (u.name));
 		},
+		title: function() { return this.workspace.metadata.name; },
 	},
 	methods: {
 		setWorkspaceVisited: async function () {

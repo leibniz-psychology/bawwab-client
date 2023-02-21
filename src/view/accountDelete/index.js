@@ -8,6 +8,9 @@ export default {
 	data: _ => ({
 		state: store.state,
 	}),
+	computed: {
+		title: function() { return this.$t('v.accountDelete.delete') },
+	},
 	methods: {
 		deleteAccount: async function () {
 			let r = await fetch ('/api/user', {

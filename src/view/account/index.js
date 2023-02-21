@@ -23,6 +23,7 @@ export default {
 		autocopySharedReadOnly: settingsProp ('autocopySharedReadOnly'),
 		dontShowSharedReadOnlyPopUp: settingsProp ('dontShowSharedReadOnlyPopUp'),
 		dontShowSharedWriteAccessPopUp: settingsProp ('dontShowSharedWriteAccessPopUp'),
+		title: function () { return this.$t('v.account.headline'); },
 	},
 	methods: {
 		mailto: function (a) {

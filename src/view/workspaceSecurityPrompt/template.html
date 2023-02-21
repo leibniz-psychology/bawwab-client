@@ -1,4 +1,4 @@
-<modal class="wsp-prompt" icon="users" :title="title" :closeLink="{name: 'workspace', params: {wsid: workspace?.metadata._id}}" :scaling="true">
+<modal class="wsp-prompt" icon="users" :title="boxtitle" :closeLink="{name: 'workspace', params: {wsid: workspace?.metadata._id}}" :scaling="true">
 	<div class="wsp-prompt_info">
 		<i class="fas fa-question-circle inline-icon"></i>
 		<router-link class="info-link" :to="{name: 'faq'}">{{ $t('v.workspaceSecurityPrompt.explainLink') }}</router-link>

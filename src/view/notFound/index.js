@@ -5,5 +5,8 @@ export default {
 	template: template,
 	data: _ => ({
 		}),
+	computed: {
+		title: function() { return this.$t('v.notFound.notfound'); },
+	},
 };
 

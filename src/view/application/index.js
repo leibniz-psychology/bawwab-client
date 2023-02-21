@@ -133,6 +133,14 @@ export default {
 			}
 			return p.profilePath != this.workspace.profilePath;
 		},
+		appName: function () {
+			let name = this.application[`name[${this.$i18n.locale}]`];
+			if (!name) {
+				name = this.application.name;
+			}
+			return name;
+		},
+		title: function () { return `${this.workspace.metadata.name} - ${this.appName}`; },
 	},
 	watch: {
 		'program.state': async function () {

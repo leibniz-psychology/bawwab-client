@@ -18,6 +18,7 @@ export default {
 			return this.workspaces ? this.workspaces.getById (this.wsid) : null;
 		},
 		backRoute: function () { return {name: 'workspace', params: {wsid: this.workspace.metadata._id}}; },
+		title: function () { return this.workspace.metadata.name + ' - ' + this.$t('v.workspacePublish.title'); },
 	},
 	methods: {
 		sharePublic: async function () {

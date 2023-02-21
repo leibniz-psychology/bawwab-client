@@ -44,5 +44,8 @@ export default {
 			this.running = false;
 		}
 	},
+	computed: {
+		title: function () { return this.$t('v.action.headline'); },
+	},
 };
 

@@ -28,6 +28,7 @@ export default {
 		mustAccept: function () {
 			return this.state.user?.loginStatus == 'termsOfService';
 		},
+		title: function () { return this.$t('v.tosPrompt.welcome'); },
 	},
 	methods: {
 		acceptText: function (kind) {

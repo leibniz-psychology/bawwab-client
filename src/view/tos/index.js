@@ -16,6 +16,7 @@ export default {
 		terms: function () {
 			return this.allTerms?.filter (t => t.language == this.$i18n.locale && t.kind == this.kind)[0];
 		},
+		title: function () { return this.kindToHeading(this.terms.kind); },
 	},
 	methods: {
 		kindToHeading: function (k) {

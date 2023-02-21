@@ -53,6 +53,7 @@ export default {
 					this.emailAddresses.reduce ((last, current) => last || (current.status == SendStatus.unknown), false) &&
 					this.emailMessage;
 		},
+		title: function () { return this.workspace.metadata.name + ' - ' + this.$t('v.workspaceShare.sharetitle'); },
 	},
 	created: async function() {
 		const values = await Promise.all ([
