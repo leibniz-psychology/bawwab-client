@@ -56,11 +56,18 @@ export default {
 		title: function () { return this.workspace.metadata.name + ' - ' + this.$t('v.workspaceShare.sharetitle'); },
 	},
 	created: async function() {
-		const values = await Promise.all ([
-				this.workspaces.createShareUrl (this.workspace, false),
-				this.workspaces.createShareUrl (this.workspace, true)]);
-		this.shareUrl[false] = values[0];
-		this.shareUrl[true] = values[1];
+		const ws = this.workspace;
+		if (ws.isPublic) {
+			const resolved = this.$router.resolve ({name: 'workspace', params: {wsid: this.wsid}});
+			const url = new URL (resolved.href, window.location.href);
+			this.shareUrl[false] = url;
+		} else {
+			const values = await Promise.all ([
+					this.workspaces.createShareUrl (this.workspace, false),
+					this.workspaces.createShareUrl (this.workspace, true)]);
+			this.shareUrl[false] = values[0];
+			this.shareUrl[true] = values[1];
+		}
 	},
 	methods: {
 		copyToClipboard: async function(text) {

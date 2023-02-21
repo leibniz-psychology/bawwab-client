@@ -53,7 +53,7 @@
 		<div class="ws-secondaryActions">
 			<router-link class="btn ws-actionButton" v-if="permissions.canRun" :to="{name: 'workspacePackages', params: {wsid: workspace.metadata._id}}"><i class="fas fa-box"></i> {{ $t('v.workspaceShow.editpackages') }}</router-link>
 			<router-link class="btn ws-actionButton" :to="{name: 'fileManager', params: {wsidA: workspace.metadata._id}}"><i class="fas fa-file"></i> {{ $t('v.workspaceShow.files') }}</router-link>
-			<router-link class="btn ws-actionButton" v-if="workspace.canShare" :to="{name: 'workspaceShare', params: {wsid: workspace.metadata._id}}"><i class="fas fa-share"></i> {{ $t('v.workspaceShow.share') }}</router-link>
+			<router-link class="btn ws-actionButton" v-if="workspace.canShare || workspace.isPublic" :to="{name: 'workspaceShare', params: {wsid: workspace.metadata._id}}"><i class="fas fa-share"></i> {{ $t('v.workspaceShow.share') }}</router-link>
 			<router-link class="btn ws-actionButton" v-if="workspace.canPublish" :to="{name: 'workspacePublish', params: {wsid: workspace.metadata._id}}"><i class="fas fa-globe"></i> {{ $t('v.workspaceShow.publish') }}</router-link>
 			<router-link class="btn ws-actionButton" v-if="permissions.canRead" :to="{name: 'workspaceExport', params: {wsid: workspace.metadata._id}}"><i class="fas fa-file-export"></i> {{ $t('v.workspaceShow.export') }}</router-link>
 			<action-button v-if="permissions.canRead" icon="copy" :f="copy" ref="copybtn" class="copy ws-actionButton">{{ $t('v.workspaceShow.copy') }}</action-button>
