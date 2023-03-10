@@ -14,21 +14,17 @@
     padding: 0 2em;
 }
 
-.lp-overview_leftPhoto,
-.lp-overview_rightPhoto {
+.lp-overview_rightPhoto video {
+    width: 100%;
     border-radius: 1em;
-    background-size: cover;
-    min-height: 15em;
 }
 
 .lp-overview_leftPhoto {
     background-image: url(../../img/foto_links_oben.jpg);
     background-position: right;
-}
-
-.lp-overview_rightPhoto {
-    background-image: url(../../img/foto_rechts_unten.jpg);
-    background-position: center;
+    min-height: 15em;
+    background-size: cover;
+    border-radius: 1em;
 }
 
 .lp-container_goto {
