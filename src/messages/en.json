@@ -104,7 +104,9 @@
             "stop": "Stop",
             "needrestart": "Changes made to the project apply to this application only after a restart.",
             "busy": "The project is being updated currently. This application can only be started afterwards.",
-            "createVersion": "Create backup"
+            "createVersion": "Create backup",
+            "installPackageHint": "{packages} can be installed through the {link}.",
+            "packageManager": "package manager"
         },
         "tos": {
             "kind_tos": "PsychNotebook Terms of Use",

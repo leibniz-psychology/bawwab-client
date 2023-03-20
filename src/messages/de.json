@@ -103,7 +103,9 @@
       "stop": "Beenden",
       "needrestart": "Die Änderungen am Projekt werden für diese Anwendung erst sichbar, wenn sie neugestartet wird.",
       "busy": "Das Projekt wird zurzeit aktualisiert. Die Anwendung kann erst danach gestartet werden.",
-      "createVersion": "Sicherung erstellen"
+      "createVersion": "Sicherung erstellen",
+      "installPackageHint": "{packages} kann über den {link} installiert werden. | {packages} können über den {link} installiert werden.",
+      "packageManager": "Paketmanager"
     },
     "tos": {
       "kind_tos": "PsychNotebook Nutzungsbedingungen",

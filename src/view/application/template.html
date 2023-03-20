@@ -25,6 +25,16 @@
 		   </div>
 		</nav>
 		<message v-if="needRestart" kind="warning">{{ $t('v.application.needrestart') }}</message>
+		<message v-if="installPackages" :changeWatch="installPackages" kind="info">
+			<i18n-t keypath="v.application.installPackageHint" tag="p" :plural="installPackages.length">
+				<template v-slot:packages>
+					{{ installPackages.join(', ') }}
+				</template>
+				<template v-slot:link>
+					<router-link :to="installPackagesLink">{{ $t('v.application.packageManager') }}</router-link>
+				</template>
+			</i18n-t>
+		</message>
 	</header>
 	<p v-if="!workspace">{{ $t('v.application.nonexistentws') }}</p>
 	<p v-else-if="!application">{{ $t('v.application.nonexistent') }}</p>

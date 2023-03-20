@@ -14,6 +14,7 @@ export default {
 		state: store.state,
 		ConductorState: ConductorState,
 		autosaveTimer: null,
+		installPackages: null,
 	}),
 	components: {
 		'workspace-version': WorkspaceVersionComponent,
@@ -24,13 +25,28 @@ export default {
 		if (!this.program) {
 			await this.state.workspaces.start (this.workspace, this.application);
 		}
+		window.addEventListener("message", this.handleMessage.bind (this));
 	},
 	unmounted: function() {
 		if (this.autosaveTimer) {
 			clearTimeout (this.autosaveTimer);
 		}
+		window.removeEventListener ("message", this.handleMessage);
 	},
 	methods: {
+		handleMessage: function (e) {
+			if (this.url === null) {
+				return;
+			}
+			const u = new URL (this.url);
+			if (e.origin != u.origin) {
+				console.log (`got message from non-application origin ${e.origin} != ${u.origin}`);
+				return;
+			}
+			if (e.data?.type == 'psychnotebook_notify_install_packages') {
+				this.installPackages = e.data.data;
+			}
+		},
 		reset: function () {
 			this.state.workspaces.resetRunningApplication (this.workspace, this.application);
 		},
@@ -141,6 +157,14 @@ export default {
 			return name;
 		},
 		title: function () { return `${this.workspace.metadata.name} - ${this.appName}`; },
+		installPackagesLink: function () { return {
+			name: 'workspacePackages',
+			query: {
+				search: '^(' + this.installPackages.map (x => 'r-' + x).join ('|') + ')$',
+				next: this.$router.currentRoute.value.fullPath
+				}
+			}
+		},
 	},
 	watch: {
 		'program.state': async function () {
