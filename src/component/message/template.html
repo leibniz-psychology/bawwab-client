@@ -1,6 +1,6 @@
 <div :class="divclass" v-show="visible">
 <i :class="iconclass"></i>
-<div>
+<div class="content" ref="content">
 	<slot></slot>
 </div>
 <a class="close" @click="hide"><i class="fa fa-window-close"></i></a>

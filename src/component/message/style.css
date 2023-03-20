@@ -24,6 +24,10 @@
     margin-right: 0.5em;
 }
 
+.app-message div.content {
+    flex-grow: 1;
+}
+
 .app-message pre {
     margin: 0;
     white-space: pre-wrap;
@@ -36,5 +40,4 @@
 .app-message .close {
     cursor: pointer;
     text-align: right;
-    flex-grow: 2;
 }
