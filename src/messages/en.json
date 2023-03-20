@@ -100,14 +100,13 @@
             "exited": "Application finished.",
             "failed": "Application failed to run. ({reason})",
             "projects": "Projects",
-            "reset": "Restart",
-            "stop": "Stop",
             "needrestart": "Changes made to the project apply to this application only after a restart.",
             "busy": "The project is being updated currently. This application can only be started afterwards.",
             "createVersion": "Create backup",
             "installPackageHint": "{packages} can be installed through the {link}.",
             "packageManager": "package manager",
-            "restartNow": "Restart now."
+            "restartNow": "Restart now.",
+            "managePackages": "Manage packages"
         },
         "tos": {
             "kind_tos": "PsychNotebook Terms of Use",

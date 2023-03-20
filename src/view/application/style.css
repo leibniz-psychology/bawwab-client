@@ -26,19 +26,24 @@
     text-align: center;
 }
 
-.av-header_title ul {
+.av-header ul {
+    list-style-type: none;
     margin: 0;
-    padding: 0;
-}
-
-.av-header_title li {
-    display: inline;
     padding: 0 0.7em;
+    display: flex;
 }
 
-.av-header_title img {
-    height: 1em;
-    vertical-align: middle;
+.av-header ul li.spacer {
+    flex-grow: 1;
+}
+
+.av-header ul li {
+    padding: 0.5em 0.2em;
+}
+
+.av-header .workspace img, .av-header .logo img {
+    height: 1.5em;
+    vertical-align: text-bottom;
 }
 
 .av-header_history {

@@ -1,28 +1,34 @@
 <aside class="av-overlay">
    <header class="av-header">
-		<nav class="pure-g">
-		   <div class="pure-u-1-5 av-header_back">
-				   <router-link :to="{name: 'workspaces'}">{{ $t('v.application.projects') }}</router-link>
-		   </div>
-		   <div class="pure-u-3-5 av-header_title">
-				<ul>
-					<li v-if="program && program.error !== null"><action-button :f="reset" icon="redo">{{ $t('v.application.reset') }}</action-button></li>
-					<!--<li v-if="program && program.state != ConductorState.exited"><action-button :f="terminate" icon="stop">{{ $t('v.application.stop') }}</action-button></li>-->
-					<li v-if="workspace"><router-link :to="{name: 'workspace', params: {wsid: workspace.metadata._id}}"><application-icon :workspace="workspace" :application="application"></application-icon> {{ workspace.metadata.name }}</router-link></li>
-					<li><dropdown class="av-header_history">
-						<template v-slot:button>
-							<action-button :f="createManualVersion" icon="history" importance="low">{{ $t('v.application.createVersion') }}</action-button>
-							<i class="fas fa-caret-down"></i>
-						</template>
-						<template v-slot:default>
-							<workspace-version :wsid="wsid"></workspace-version>
-						</template>
-					</dropdown></li>
-				</ul>
-		   </div>
-		   <div class="pure-u-1-5 av-header_logo">
-				   <router-link :to="{name: 'index'}"><img src="https://www.lifp.de/assets/images/psychnotebook.svg" style="height: 1.5em; filter: invert(100%) opacity(50%);"></router-link>
-		   </div>
+		<nav>
+			<ul>
+				<li class="logo">
+					<router-link :to="{name: 'index'}"><img src="https://www.lifp.de/assets/images/psychnotebook.svg" style="filter: invert(100%) opacity(50%);"></router-link>
+				</li>
+				<li>
+					› <router-link :to="{name: 'workspaces'}">{{ $t('v.application.projects') }}</router-link>
+				</li>
+				<li class="workspace" v-if="workspace">
+					› <router-link :to="{name: 'workspace', params: {wsid: workspace.metadata._id}}">
+						<application-icon :workspace="workspace" :application="application"></application-icon>
+						{{ workspace.metadata.name }}
+					</router-link>
+				</li>
+				<li class="spacer"></li>
+				<li><dropdown class="av-header_history">
+					<template v-slot:button>
+						<action-button :f="createManualVersion" icon="history" importance="low">{{ $t('v.application.createVersion') }}</action-button>
+						<i class="fas fa-caret-down"></i>
+					</template>
+					<template v-slot:default>
+						<workspace-version :wsid="wsid"></workspace-version>
+					</template>
+				</dropdown></li>
+
+				<li>
+					<router-link class="btn" :to="{name: 'workspacePackages', params: {wsid: workspace.metadata._id}, query: {next: urlPath}}"><i class="fas fa-box"></i> {{ $t('v.application.managePackages') }}</router-link>
+				</li>
+			</ul>
 		</nav>
 		<message v-if="needRestart" kind="warning">{{ $t('v.application.needrestart') }} <a href="#" @click="restart">{{ $t("v.application.restartNow") }}</a></message>
 		<message v-if="installPackages" :changeWatch="installPackages" kind="info">

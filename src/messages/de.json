@@ -99,14 +99,13 @@
       "exited": "Anwendung wurde beendet.",
       "failed": "Anwendung konnte nicht ausgeführt werden. ({reason})",
       "projects": "Projekte",
-      "reset": "Neustarten",
-      "stop": "Beenden",
       "needrestart": "Die Änderungen am Projekt werden für diese Anwendung erst sichbar, wenn sie neugestartet wird.",
       "busy": "Das Projekt wird zurzeit aktualisiert. Die Anwendung kann erst danach gestartet werden.",
       "createVersion": "Sicherung erstellen",
       "installPackageHint": "{packages} kann über den {link} installiert werden. | {packages} können über den {link} installiert werden.",
       "packageManager": "Paketmanager",
-      "restartNow": "Jetzt neustarten."
+      "restartNow": "Jetzt neustarten.",
+      "managePackages": "Pakete verwalten"
     },
     "tos": {
       "kind_tos": "PsychNotebook Nutzungsbedingungen",

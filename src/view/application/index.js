@@ -168,9 +168,12 @@ export default {
 			name: 'workspacePackages',
 			query: {
 				search: '^(' + this.installPackages.map (x => 'r-' + x).join ('|') + ')$',
-				next: this.$router.currentRoute.value.fullPath
+				next: this.urlPath
 				}
 			}
+		},
+		urlPath: function () {
+			return this.$router.currentRoute.value.fullPath;
 		},
 	},
 	watch: {
