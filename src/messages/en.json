@@ -106,7 +106,8 @@
             "busy": "The project is being updated currently. This application can only be started afterwards.",
             "createVersion": "Create backup",
             "installPackageHint": "{packages} can be installed through the {link}.",
-            "packageManager": "package manager"
+            "packageManager": "package manager",
+            "restartNow": "Restart now."
         },
         "tos": {
             "kind_tos": "PsychNotebook Terms of Use",

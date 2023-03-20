@@ -53,6 +53,13 @@ export default {
 		terminate: async function () {
 			await this.program.terminate ();
 		},
+		restart: async function () {
+			await this.terminate ();
+			this.reset ();
+			if (!this.program) {
+				await this.state.workspaces.start (this.workspace, this.application);
+			}
+		},
 		createManualVersion: async function () {
 			await this.createVersion('manual-{now:%Y-%m-%dT%H:%M:%S}');
 		},

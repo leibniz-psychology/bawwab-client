@@ -105,7 +105,8 @@
       "busy": "Das Projekt wird zurzeit aktualisiert. Die Anwendung kann erst danach gestartet werden.",
       "createVersion": "Sicherung erstellen",
       "installPackageHint": "{packages} kann über den {link} installiert werden. | {packages} können über den {link} installiert werden.",
-      "packageManager": "Paketmanager"
+      "packageManager": "Paketmanager",
+      "restartNow": "Jetzt neustarten."
     },
     "tos": {
       "kind_tos": "PsychNotebook Nutzungsbedingungen",

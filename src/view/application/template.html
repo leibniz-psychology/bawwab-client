@@ -24,7 +24,7 @@
 				   <router-link :to="{name: 'index'}"><img src="https://www.lifp.de/assets/images/psychnotebook.svg" style="height: 1.5em; filter: invert(100%) opacity(50%);"></router-link>
 		   </div>
 		</nav>
-		<message v-if="needRestart" kind="warning">{{ $t('v.application.needrestart') }}</message>
+		<message v-if="needRestart" kind="warning">{{ $t('v.application.needrestart') }} <a href="#" @click="restart">{{ $t("v.application.restartNow") }}</a></message>
 		<message v-if="installPackages" :changeWatch="installPackages" kind="info">
 			<i18n-t keypath="v.application.installPackageHint" tag="p" :plural="installPackages.length">
 				<template v-slot:packages>
