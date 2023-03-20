@@ -69,6 +69,10 @@ export default {
 		searchFailed: function () { return this.searching instanceof Error },
 		busy: function () { return this.status?.name === 'busy' },
 		title: function () { return this.workspace.metadata.name + ' - ' + this.$t('v.workspacePackages.title'); },
+		next: function () {
+			return this.$route.query['next'] ??
+					{name: 'workspace', params: {wsid: this.workspace.metadata._id}};
+		},
 	},
     methods: {
 		doPackageUpgrade: async function () {
@@ -88,7 +92,7 @@ export default {
 						this.state.workspaces.packageModify (this.workspace, this.packageTransforms),
 						new Promise (function (resolve, reject) { this.cancel = reject }.bind (this))]);
 				this.status = {name: 'success'};
-				await this.$router.push ({name: 'workspace', params: {wsid: this.workspace.metadata._id}});
+				await this.$router.push (this.next);
 			} catch (e) {
 				console.debug ('workspacePackages failed: ' + e);
 				if (e instanceof CancelledError) {
