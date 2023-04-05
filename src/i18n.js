@@ -36,10 +36,11 @@ async function loadLanguage (lang) {
 		en: () => import ('./messages/en.json'),
 		};
 	if (!langs[lang]) {
-		return;
+		return false;
 	}
 	const data = await langs[lang]();
 	i18n.global.setLocaleMessage (lang, data);
+	return true;
 }
 
 export async function setLanguage (newLang) {
@@ -53,7 +54,14 @@ export async function setLanguage (newLang) {
 		newLang = 'en';
 	}
 
-	await loadLanguage (newLang);
+	while (true) {
+		const success = await loadLanguage (newLang);
+		if (success) {
+			break;
+		}
+		/* Loading English as a fallback should never fail */
+		newLang = 'en';
+	}
 	i18n.global.locale = newLang;
 	window.localStorage.setItem ('language', newLang);
 }
