@@ -242,6 +242,15 @@
         "move": "Verschieben",
         "swap": "Tauschen",
         "expand": "Dateien kopieren oder verschieben"
+    },
+    "workspaceExportEverything": {
+        "title": "Nutzerdaten exportieren",
+        "headline": "Nutzerdaten exportieren",
+        "back": "Zurück",
+        "question": "Alle Deine Projekte werden nach {target} exportiert. Fortfahren?",
+        "success": "Deine Projekte wurden erfolgreich exportiert.",
+        "failure": "Leider ist beim Export etwas schief gelaufen.",
+        "submit": "Alle Projekte exportieren"
     }
   },
   "c": {

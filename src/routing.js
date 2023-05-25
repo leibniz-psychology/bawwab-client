@@ -12,6 +12,7 @@ const OpenSourceView = () => import ('./view/opensource');
 const TermsOfServiceView = () => import ('./view/tos');
 const TermsOfServicePromptView = () => import ('./view/tosPrompt');
 const WorkspaceImportView = () => import ('./view/workspaceImport');
+const WorkspaceExportEverythingView = () => import ('./view/workspaceExportEverything');
 const WorkspaceSecurityPromptView = () => import ('./view/workspaceSecurityPrompt');
 const WorkspaceShareView = () => import ('./view/workspaceShare');
 const WorkspacePublishView = () => import ('./view/workspacePublish');
@@ -26,6 +27,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
 	{ path: '/workspaces', component: WorkspaceListView, name: 'workspaces', meta: { requireAuth: true } },
 	{ path: '/workspaces/import', components: { default: WorkspaceListView, overlay: WorkspaceImportView }, name: 'workspaceImport', meta: { requireAuth: true } },
+	{ path: '/workspaces/export', components: { default: WorkspaceListView, overlay: WorkspaceExportEverythingView }, name: 'workspaceExportEverything', meta: { requireAuth: true } },
 	{ path: '/workspaces/:wsid', component: WorkspaceShowView, name: 'workspace', props: true, meta: { requireAuth: true }  },
 	{ path: '/workspaces/:wsid/delete', components: { default: WorkspaceShowView, overlay: WorkspaceDeleteView }, name: 'workspaceDelete', props: { default: true, overlay: true }, meta: { requireAuth: true } },
 	{ path: '/workspaces/:wsid/share', components: { default: WorkspaceShowView, overlay: WorkspaceShareView }, name: 'workspaceShare', props: { default: true, overlay: true }, meta: { requireAuth: true } },

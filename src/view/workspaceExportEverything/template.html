@@ -1,0 +1,11 @@
+<modal :title="$t('v.workspaceExportEverything.headline')" :closeName="$t('v.workspaceExportEverything.back')" :closeLink="closeLink" :scaling="true" icon="file-export">
+	<div class="we-exportModal">
+    	<p v-if="!password">No password given</p>
+    	<p v-else-if="success === true">{{ $t('v.workspaceExportEverything.success') }}</p>
+    	<p v-else-if="success === false">{{ $t('v.workspaceExportEverything.failure') }}</p>
+		<p v-else>{{ $t('v.workspaceExportEverything.question', {target: targetUrl}) }}</p>
+	</div>
+	<template v-slot:buttons>
+		<action-button :f="run" icon="file-export" importance="high" :disabled="!canExport">{{ $t('v.workspaceExportEverything.submit') }}</action-button>
+	</template>
+</modal>

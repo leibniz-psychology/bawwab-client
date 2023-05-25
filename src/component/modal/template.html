@@ -15,7 +15,8 @@
 			</div>
 			<div class="app-modal_buttons">
 				<slot name="buttons"></slot>
-				<router-link :to="closeLink" v-if="closeName" class="btn low">{{ closeName }}</router-link>
+				<a v-if="typeof closeLink === 'string'" class="btn low" :href="closeLink">{{ closeName }}</a>
+				<router-link v-else :to="closeLink" v-if="closeName" class="btn low">{{ closeName }}</router-link>
 			</div>
 		</div>
 	</div>

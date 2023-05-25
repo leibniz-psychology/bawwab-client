@@ -243,7 +243,16 @@
             "move": "Move",
             "swap": "Swap",
             "expand": "Move or copy files"
-        }
+        },
+    "workspaceExportEverything": {
+        "title": "Export my data",
+        "headline": "Export my data",
+        "back": "Cancel",
+        "question": "All of your projects will be exported to {target}. Continue?",
+        "success": "Your projects have been exported.",
+        "failure": "Something went wrong, sorry.",
+        "submit": "Export all projects"
+    }
     },
     "c": {
         "workspaceVersion": {
