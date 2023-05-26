@@ -41,3 +41,9 @@
     cursor: pointer;
     text-align: right;
 }
+
+.app-message .btn {
+    color: inherit;
+    background-color: inherit;
+    border-color: white;
+}

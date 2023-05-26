@@ -88,6 +88,9 @@ export default {
 			await this.workspaces.unshare (this.workspace, `g:${group}`);
 		},
 		copy,
+		repair: async function () {
+			await this.workspaces.repair (this.workspace);
+		},
 		makeEditable: function () {
 			if (!this.canEditMeta) {
 				return false;

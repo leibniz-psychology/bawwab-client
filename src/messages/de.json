@@ -225,7 +225,9 @@
       "noTitle": "Klicken, um einen Titel hinzuzufügen",
       "noDescription": "Klicken, um eine Beschreibung hinzuzufügen.",
       "editpackages": "Pakete verwalten",
-      "files": "Dateien verwalten"
+      "files": "Dateien verwalten",
+      "broken": "Dieses Projekt ist zurzeit defekt und Anwendungen können nicht ausgeführt werden.",
+      "repair": "Reparieren"
     },
     "logout": {
       "logout": "Abmelden",

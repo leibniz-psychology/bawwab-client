@@ -44,6 +44,8 @@ export default class Workspaces {
 
 		registerRunWithCb ('workspaces.ignore', this.onIgnore);
 
+		registerRunWithCb ('workspaces.repair', this.onUpdate);
+
 		emregister ('workspaces.delete', this.onDelete.bind (this));
 		emregister ('workspaces.start', this.onStart.bind (this));
 		emregister ('workspaces.export', this.onExport.bind (this));
@@ -243,6 +245,11 @@ export default class Workspaces {
 	async packageUpgrade (ws) {
 		const args = ['package', 'upgrade']
 		return await this.runWith ('workspaces.packageUpgrade', ws, args);
+	}
+
+	async repair (ws) {
+		/* An empty modify should fix profile issues */
+		return await this.runWith ('workspaces.repair', ws, ['package', 'modify']);
 	}
 
 	async onDiscover (args, p) {

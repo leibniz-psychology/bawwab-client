@@ -222,7 +222,9 @@
             "noTitle": "Click to add a title",
             "noDescription": "Click to add a description.",
             "editpackages": "Manage packages",
-            "files": "Manage files"
+            "files": "Manage files",
+            "broken": "This project is currently broken and applications cannot be used.",
+            "repair": "Repair"
         },
         "faq": {
             "title": "Help",

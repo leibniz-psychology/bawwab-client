@@ -59,6 +59,8 @@
 			<action-button v-if="permissions.canRead" icon="copy" :f="copy" ref="copybtn" class="copy ws-actionButton">{{ $t('v.workspaceShow.copy') }}</action-button>
 		</div>
 
+		<message v-if="!workspace.profilePathValid" kind="warning"><p>{{ $t('v.workspaceShow.broken') }} <action-button icon="hammer" :f="repair">{{ $t('v.workspaceShow.repair') }}</action-button></p></message>
+
 		<div class="ws-applications">
 			<application-item
 				v-for="a in workspace.runnableApplications()"
