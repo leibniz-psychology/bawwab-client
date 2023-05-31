@@ -40,6 +40,7 @@
 .app-message .close {
     cursor: pointer;
     text-align: right;
+    margin-left: 0.5em;
 }
 
 .app-message .btn {

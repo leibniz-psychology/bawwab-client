@@ -78,6 +78,7 @@
       <div class="wrapped pure-g">
         <div class="pure-u-1">
           <main>
+            <message kind="info">{{ $t('app.goodbye') }}</message>
             <message v-if="offlineReason" kind="warning"><span v-html="$t('app.offline-'+offlineReason, {mail: $t('g.supportMail')})"></span></message>
             <message v-if="motd" kind="info"><pre>{{ motd }}</pre></message>
             <p style="text-align: center" v-if="loading">{{ $t('app.loading') }}<br><spinner :big="true"></spinner></p>

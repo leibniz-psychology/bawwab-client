@@ -4,7 +4,8 @@
         "loading": "Just a second…",
         "offline-lockedOut": "Your account is locked right now. Please contact <a href=\"mailto:{mail}\">{mail}</a> via email.",
         "offline-createUser": "User account cannot be created right now. Please try again later.",
-        "help": "Help"
+        "help": "Help",
+        "goodbye": "At the direction of Prof. Claudia Dalbert, interim director of ZPID, we submit the following information: “Wir bedauern, Ihnen mitteilen zu müssen, dass das ZPID am 15. Juni die aktive Wartung von PsychNotebook in seiner jetzigen Form einstellen und jeglichen Nutzersupport dafür beenden muss. Die Plattform wird bis zum 30. September 2023 ohne Wartung und Support online bleiben und dann abgeschaltet. Nutzerinnen und Nutzer werden gebeten, ihre Daten und Skripte zu exportieren und keine neuen Projekte mehr anzulegen.”"
     },
     "g": {
         "copyname": "Copy of {name}",

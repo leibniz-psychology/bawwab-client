@@ -4,7 +4,8 @@
     "loading": "Einen Moment bitte…",
     "offline-lockedOut": "Dein Benutzerkonto ist zurzeit gesperrt. Bitte melde Dich per E-Mail bei <a href=\"mailto:{mail}\">{mail}</a>.",
     "offline-createUser": "Dein Benutzerkonto kann zurzeit nicht erstellt werden. Bitte versuche es später nochmal.",
-    "help": "Hilfe"
+    "help": "Hilfe",
+    "goodbye": "Auf Anweisung von Prof. Claudia Dalbert, Interimsdirektorin des ZPID, übermitteln wir folgende Information:  „Wir bedauern, Ihnen mitteilen zu müssen, dass das ZPID am 15. Juni die aktive Wartung von PsychNotebook in seiner jetzigen Form einstellen und jeglichen Nutzersupport dafür beenden muss. Die Plattform wird bis zum 30. September 2023 ohne Wartung und Support online bleiben und dann abgeschaltet. Nutzerinnen und Nutzer werden gebeten, ihre Daten und Skripte zu exportieren und keine neuen Projekte mehr anzulegen.“"
   },
   "g": {
     "copyname": "Kopie von {name}",
